@@ -63,6 +63,8 @@ export function Navbar({ siteConfig }) {
             src={siteConfig?.logoUrl || '/logo.png'} 
             alt="Udhbhavana Logo" 
             className="navbar-logo" 
+            fetchPriority="high"
+            loading="eager"
           />
           <div className="navbar-brand-text">
             <span className="navbar-brand-title">{siteConfig?.eventName || 'Udhbhavana 2027'}</span>

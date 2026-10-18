@@ -201,3 +201,17 @@
     width: 100%;
   }
 }
+
+@media (max-width: 480px) {
+  .navbar-logo {
+    height: 38px;
+  }
+
+  .navbar-brand-title {
+    font-size: 1.02rem;
+  }
+
+  .navbar-brand-sub {
+    font-size: 0.62rem;
+  }
+}

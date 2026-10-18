@@ -38,6 +38,8 @@ export function HeroSection({ siteConfig }) {
                 src={logoImg} 
                 alt={`${siteConfig?.eventName || 'Udhbhavana 2027'} Official Logo`}
                 className="hero-logo-img"
+                fetchPriority="high"
+                loading="eager"
               />
             </div>
 

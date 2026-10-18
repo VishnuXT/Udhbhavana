@@ -23,6 +23,10 @@ function sanitizeConfig(config) {
     sanitized.posterUrl = sanitized.posterUrl.replace('/src/assets/', '/');
     modified = true;
   }
+  if (sanitized.eventName === 'Udhbhavana 2026') {
+    sanitized.eventName = 'Udhbhavana 2027';
+    modified = true;
+  }
   return { data: sanitized, modified };
 }
 
