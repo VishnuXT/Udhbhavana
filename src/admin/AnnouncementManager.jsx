@@ -67,14 +67,7 @@ export function AnnouncementManager({
 
   return (
     <div>
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: '1.5rem',
-        flexWrap: 'wrap',
-        gap: '1rem'
-      }}>
+      <div className="admin-page-header">
         <div>
           <h2 style={{ fontSize: '1.4rem', color: '#142A55' }}>Announcements & Alerts</h2>
           <p style={{ color: '#64748B', fontSize: '0.9rem' }}>
@@ -82,14 +75,16 @@ export function AnnouncementManager({
           </p>
         </div>
 
-        <button 
-          type="button" 
-          className="btn btn-primary btn-sm"
-          onClick={handleOpenAdd}
-        >
-          <Plus size={16} />
-          Create Announcement
-        </button>
+        <div className="admin-page-header-actions">
+          <button 
+            type="button" 
+            className="btn btn-primary btn-sm"
+            onClick={handleOpenAdd}
+          >
+            <Plus size={16} />
+            Create Announcement
+          </button>
+        </div>
       </div>
 
       <div className="admin-card">
@@ -167,6 +162,69 @@ export function AnnouncementManager({
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile Touch-Friendly Card Feed (<= 768px) */}
+        <div className="admin-mobile-cards" style={{ padding: '0.75rem' }}>
+          {announcements.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '2rem', color: '#64748B' }}>
+              No announcements created yet.
+            </div>
+          ) : (
+            announcements.map((ann) => {
+              const isExpired = ann.expiresAt && ann.expiresAt < today;
+
+              return (
+                <div key={ann.id} className="admin-mobile-card-item">
+                  <div className="admin-mobile-card-header">
+                    <button 
+                      type="button" 
+                      onClick={() => handleTogglePublish(ann)}
+                      className={`badge ${ann.published && !isExpired ? 'badge-green' : isExpired ? 'badge-gray' : 'badge-yellow'}`}
+                      style={{ cursor: 'pointer', border: 'none' }}
+                    >
+                      {isExpired ? 'Expired' : ann.published ? 'Live' : 'Draft'}
+                    </button>
+                    <span style={{ fontSize: '0.78rem', color: '#64748B' }}>
+                      {ann.publishedAt || 'Today'}
+                    </span>
+                  </div>
+
+                  <h4 className="admin-mobile-card-title">{ann.title}</h4>
+                  
+                  <p className="admin-mobile-card-desc">{ann.message}</p>
+
+                  <div className="admin-mobile-card-meta">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', color: isExpired ? '#E11D48' : '#64748B' }}>
+                      <span>⏳</span>
+                      <span>{ann.expiresAt ? `Expires: ${ann.expiresAt}` : 'No Expiry Set'}</span>
+                    </div>
+                  </div>
+
+                  <div className="admin-mobile-card-actions">
+                    <button 
+                      type="button" 
+                      className="btn btn-secondary btn-sm"
+                      onClick={() => handleOpenEdit(ann)}
+                      style={{ flex: 1, justifyContent: 'center' }}
+                    >
+                      <Edit size={14} />
+                      Edit
+                    </button>
+                    <button 
+                      type="button" 
+                      className="btn btn-secondary btn-sm"
+                      onClick={() => setDeleteConfirmId(ann.id)}
+                      style={{ color: '#EF4444', borderColor: '#FECDD3', padding: '0.4rem 0.75rem' }}
+                      title="Delete"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
 

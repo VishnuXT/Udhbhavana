@@ -149,14 +149,7 @@ export function CompetitionManager({
   return (
     <div>
       {/* Header & Controls */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: '1.5rem',
-        flexWrap: 'wrap',
-        gap: '1rem'
-      }}>
+      <div className="admin-page-header">
         <div>
           <h2 style={{ fontSize: '1.4rem', color: '#142A55' }}>Competitions Management</h2>
           <p style={{ color: '#64748B', fontSize: '0.9rem' }}>
@@ -164,7 +157,7 @@ export function CompetitionManager({
           </p>
         </div>
 
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+        <div className="admin-page-header-actions">
           {hasDuplicates && (
             <button 
               type="button" 
@@ -328,6 +321,107 @@ export function CompetitionManager({
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile Touch-Friendly Card Feed (<= 768px) */}
+        <div className="admin-mobile-cards" style={{ padding: '0.75rem' }}>
+          {filteredCompetitions.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '2rem', color: '#64748B' }}>
+              No competitions match your search query.
+            </div>
+          ) : (
+            filteredCompetitions.map((comp, idx) => (
+              <div key={comp.id} className="admin-mobile-card-item">
+                <div className="admin-mobile-card-header">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <span className="badge badge-navy" style={{ fontWeight: 700 }}>#{idx + 1}</span>
+                    <span className="badge badge-navy">{comp.category || 'Contest'}</span>
+                  </div>
+                  <button 
+                    type="button" 
+                    onClick={() => handleTogglePublish(comp)}
+                    className={`badge ${comp.published ? 'badge-green' : 'badge-yellow'}`}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                  >
+                    {comp.published ? 'Published' : 'Hidden'}
+                  </button>
+                </div>
+
+                <h4 className="admin-mobile-card-title">{comp.title}</h4>
+                
+                {comp.description && (
+                  <p className="admin-mobile-card-desc">{comp.description}</p>
+                )}
+
+                <div className="admin-mobile-card-meta">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', color: '#64748B' }}>
+                    <span>📅</span>
+                    <span>{comp.eventDate || 'TBA'} {comp.eventTime ? `• ${comp.eventTime}` : ''}</span>
+                  </div>
+                  {comp.venue && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', color: '#64748B' }}>
+                      <span>📍</span>
+                      <span>{comp.venue}</span>
+                    </div>
+                  )}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem' }}>
+                    <span className={`badge ${comp.registrationStatus?.toLowerCase().includes('open') ? 'badge-green' : 'badge-gray'}`}>
+                      {comp.registrationStatus || 'Announced'}
+                    </span>
+                    {comp.registrationUrl && (
+                      <span style={{ fontSize: '0.75rem', color: '#2878D0', fontWeight: 600 }}>🔗 Custom Form</span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="admin-mobile-card-actions">
+                  <div style={{ display: 'flex', gap: '0.25rem' }}>
+                    <button 
+                      type="button" 
+                      className="btn btn-secondary btn-sm"
+                      onClick={() => handleMove(idx, 'up')}
+                      disabled={idx === 0}
+                      style={{ opacity: idx === 0 ? 0.3 : 1, padding: '0.4rem 0.6rem' }}
+                      title="Move Up"
+                    >
+                      <ArrowUp size={14} />
+                    </button>
+                    <button 
+                      type="button" 
+                      className="btn btn-secondary btn-sm"
+                      onClick={() => handleMove(idx, 'down')}
+                      disabled={idx === filteredCompetitions.length - 1}
+                      style={{ opacity: idx === filteredCompetitions.length - 1 ? 0.3 : 1, padding: '0.4rem 0.6rem' }}
+                      title="Move Down"
+                    >
+                      <ArrowDown size={14} />
+                    </button>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '0.5rem', flex: 1, justifyContent: 'flex-end' }}>
+                    <button 
+                      type="button" 
+                      className="btn btn-secondary btn-sm"
+                      onClick={() => handleOpenEdit(comp)}
+                      style={{ flex: 1, justifyContent: 'center' }}
+                    >
+                      <Edit size={14} />
+                      Edit
+                    </button>
+                    <button 
+                      type="button" 
+                      className="btn btn-secondary btn-sm"
+                      onClick={() => setDeleteConfirmId(comp.id)}
+                      style={{ color: '#EF4444', borderColor: '#FECDD3', padding: '0.4rem 0.75rem' }}
+                      title="Delete"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
 

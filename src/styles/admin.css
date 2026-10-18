@@ -710,6 +710,83 @@ input:checked + .slider:before {
   border-bottom-right-radius: var(--radius-lg);
 }
 
+/* Page Header Layout */
+.admin-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.admin-page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Mobile Card View for Competitions & Announcements */
+.admin-mobile-cards {
+  display: none;
+}
+
+.admin-mobile-card-item {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--transition-fast);
+}
+
+.admin-mobile-card-item:hover {
+  border-color: #CFD9E8;
+}
+
+.admin-mobile-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.admin-mobile-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary-navy);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.admin-mobile-card-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.admin-mobile-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.admin-mobile-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+
 /* Sidebar Backdrop for Mobile */
 .admin-sidebar-backdrop {
   display: none;
@@ -847,6 +924,26 @@ input:checked + .slider:before {
 
   .toggle-switch-row .switch {
     align-self: flex-end;
+  }
+
+  /* Switch desktop table to touch-friendly card list on mobile */
+  .table-responsive {
+    display: none;
+  }
+
+  .admin-mobile-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .admin-page-header-actions {
+    width: 100%;
+  }
+
+  .admin-page-header-actions .btn {
+    flex: 1;
+    justify-content: center;
   }
 }
 
