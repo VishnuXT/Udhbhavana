@@ -8,8 +8,8 @@ export const initialSiteConfig = {
   registrationUrl: "https://forms.google.com",
   heroExploreBtnText: "Explore Competitions",
   heroRegisterBtnText: "Register Now",
-  logoUrl: "/src/assets/logo.png",
-  posterUrl: "/src/assets/poster.jpg",
+  logoUrl: "/logo.png",
+  posterUrl: "/poster.jpg",
 
   // About Section
   aboutTag: "Background & Purpose",

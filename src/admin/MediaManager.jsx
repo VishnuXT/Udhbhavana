@@ -40,8 +40,8 @@ export function MediaManager({ siteConfig, onUpdateConfig }) {
 
   const handleResetToDefault = async (assetType) => {
     let updates = {};
-    if (assetType === 'logo') updates = { logoUrl: '/src/assets/logo.png' };
-    if (assetType === 'poster') updates = { posterUrl: '/src/assets/poster.jpg' };
+    if (assetType === 'logo') updates = { logoUrl: '/logo.png' };
+    if (assetType === 'poster') updates = { posterUrl: '/poster.jpg' };
     if (assetType === 'guest') updates = { guestImage: '' };
 
     await onUpdateConfig(updates);
@@ -84,7 +84,7 @@ export function MediaManager({ siteConfig, onUpdateConfig }) {
               marginBottom: '1rem'
             }}>
               <img 
-                src={siteConfig?.logoUrl || '/src/assets/logo.png'} 
+                src={siteConfig?.logoUrl || '/logo.png'} 
                 alt="Current Logo Preview" 
                 style={{ maxHeight: '110px', width: 'auto', objectFit: 'contain' }} 
               />
@@ -136,7 +136,7 @@ export function MediaManager({ siteConfig, onUpdateConfig }) {
               marginBottom: '1rem'
             }}>
               <img 
-                src={siteConfig?.posterUrl || '/src/assets/poster.jpg'} 
+                src={siteConfig?.posterUrl || '/poster.jpg'} 
                 alt="Current Poster Preview" 
                 style={{ maxHeight: '200px', width: 'auto', borderRadius: '4px', objectFit: 'contain' }} 
               />

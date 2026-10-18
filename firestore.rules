@@ -14,16 +14,16 @@ service cloud.firestore {
 
     // Site Configuration Rules
     match /siteConfig/{docId} {
-      // Public can read only if published is true or if admin
-      allow read: if (resource == null || resource.data.published == true) || isAdmin();
+      // Public can read configuration
+      allow read: if true;
       // Only authenticated admins can write
       allow write: if isAdmin();
     }
 
     // Competitions Collection Rules
     match /competitions/{competitionId} {
-      // Public can read only published competitions
-      allow read: if (resource != null && resource.data.published == true) || isAdmin();
+      // Public can read competitions
+      allow read: if true;
       // Only authenticated admins can create, update, or delete
       allow write: if isAdmin();
     }
@@ -31,7 +31,7 @@ service cloud.firestore {
     // Announcements Collection Rules
     match /announcements/{announcementId} {
       // Public can read active published announcements
-      allow read: if (resource != null && resource.data.published == true) || isAdmin();
+      allow read: if true;
       // Only authenticated admins can create, update, or delete
       allow write: if isAdmin();
     }

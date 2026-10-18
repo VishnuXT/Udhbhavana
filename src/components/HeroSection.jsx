@@ -16,8 +16,8 @@ export function HeroSection({ siteConfig }) {
     }
   };
 
-  const posterImg = siteConfig?.posterUrl || '/src/assets/poster.jpg';
-  const logoImg = siteConfig?.logoUrl || '/src/assets/logo.png';
+  const posterImg = siteConfig?.posterUrl || '/poster.jpg';
+  const logoImg = siteConfig?.logoUrl || '/logo.png';
   const hasRegisterUrl = Boolean(siteConfig?.registrationUrl && siteConfig.registrationUrl.trim() !== '');
 
   return (

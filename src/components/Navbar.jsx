@@ -60,7 +60,7 @@ export function Navbar({ siteConfig }) {
           aria-label={`${siteConfig?.eventName || 'Udhbhavana 2027'} Home`}
         >
           <img 
-            src={siteConfig?.logoUrl || '/src/assets/logo.png'} 
+            src={siteConfig?.logoUrl || '/logo.png'} 
             alt="Udhbhavana Logo" 
             className="navbar-logo" 
           />

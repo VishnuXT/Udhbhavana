@@ -41,7 +41,7 @@ export function AdminLogin() {
       <div className="admin-login-card">
         <div className="admin-login-header">
           <img 
-            src="/src/assets/logo.png" 
+            src="/logo.png" 
             alt="Udhbhavana 2027 Logo" 
             className="admin-login-logo" 
           />

@@ -11,11 +11,31 @@ import { initialSiteConfig } from './initialData';
 const CONFIG_DOC_PATH = ['siteConfig', 'main'];
 const LOCAL_STORAGE_KEY = 'udhbhavana_site_config';
 
+function sanitizeConfig(config) {
+  if (!config) return { data: config, modified: false };
+  let modified = false;
+  const sanitized = { ...config };
+  if (typeof sanitized.logoUrl === 'string' && sanitized.logoUrl.startsWith('/src/assets/')) {
+    sanitized.logoUrl = sanitized.logoUrl.replace('/src/assets/', '/');
+    modified = true;
+  }
+  if (typeof sanitized.posterUrl === 'string' && sanitized.posterUrl.startsWith('/src/assets/')) {
+    sanitized.posterUrl = sanitized.posterUrl.replace('/src/assets/', '/');
+    modified = true;
+  }
+  return { data: sanitized, modified };
+}
+
 function getLocalConfig() {
   const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
   if (cached) {
     try {
-      return JSON.parse(cached);
+      const parsed = JSON.parse(cached);
+      const { data, modified } = sanitizeConfig(parsed);
+      if (modified) {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+      }
+      return data;
     } catch {
       // ignore
     }
@@ -31,7 +51,10 @@ export const siteConfigService = {
         const docRef = doc(db, ...CONFIG_DOC_PATH);
         const snapshot = await getDoc(docRef);
         if (snapshot.exists()) {
-          const data = snapshot.data();
+          const { data, modified } = sanitizeConfig(snapshot.data());
+          if (modified) {
+            setDoc(docRef, { logoUrl: data.logoUrl, posterUrl: data.posterUrl }, { merge: true }).catch(() => {});
+          }
           return { data, error: null };
         } else {
           // Initialize default document
@@ -79,7 +102,8 @@ export const siteConfigService = {
         const docRef = doc(db, ...CONFIG_DOC_PATH);
         return onSnapshot(docRef, (snap) => {
           if (snap.exists()) {
-            callback(snap.data());
+            const { data } = sanitizeConfig(snap.data());
+            callback(data);
           } else {
             callback(initialSiteConfig);
           }
@@ -94,7 +118,8 @@ export const siteConfigService = {
 
     callback(getLocalConfig());
     const handler = (e) => {
-      callback(e.detail || getLocalConfig());
+      const { data } = sanitizeConfig(e.detail || getLocalConfig());
+      callback(data);
     };
     window.addEventListener('udhbhavana_config_change', handler);
     return () => window.removeEventListener('udhbhavana_config_change', handler);
