@@ -38,6 +38,15 @@ export function AdminLayout({ activeTab, setActiveTab, siteConfig, children }) {
 
   return (
     <div className="admin-shell">
+      {/* Mobile Sidebar Backdrop */}
+      {sidebarOpen && (
+        <div 
+          className="admin-sidebar-backdrop" 
+          onClick={() => setSidebarOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Sidebar */}
       <aside className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="admin-sidebar-header">
