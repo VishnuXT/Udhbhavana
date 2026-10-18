@@ -1,0 +1,66 @@
+:root {
+  /* Core Brand Palette */
+  --color-primary-navy: #142A55;
+  --color-navy-dark: #0D1C3A;
+  --color-navy-light: #1F3B73;
+  --color-action-blue: #2878D0;
+  --color-action-blue-hover: #1E63B0;
+  --color-accent-yellow: #F4B928;
+  --color-accent-green: #24A36B;
+  --color-accent-green-bg: #E8F7F0;
+  --color-accent-red: #E11D48;
+  --color-accent-red-bg: #FFE4E6;
+
+  /* Neutrals */
+  --color-white: #FFFFFF;
+  --color-bg: #F4F7FC;
+  --color-bg-alt: #EDF2F9;
+  --color-card-bg: #FFFFFF;
+  --color-border: #E5EAF2;
+  --color-border-subtle: #EEF2F6;
+  --color-border-focus: #2878D0;
+
+  /* Typography */
+  --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --color-text-primary: #1F2937;
+  --color-text-secondary: #64748B;
+  --color-text-muted: #94A3B8;
+  --color-text-white: #FFFFFF;
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+  --space-20: 5rem;    /* 80px */
+  --space-24: 6rem;    /* 96px */
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows - Minimal & restrained */
+  --shadow-subtle: 0 1px 3px rgba(20, 42, 85, 0.05);
+  --shadow-sm: 0 2px 6px rgba(20, 42, 85, 0.06);
+  --shadow-md: 0 4px 14px rgba(20, 42, 85, 0.08);
+  --shadow-lg: 0 10px 25px rgba(20, 42, 85, 0.10);
+  --shadow-modal: 0 20px 40px rgba(13, 28, 58, 0.18);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --max-width: 1200px;
+  --header-height: 72px;
+}

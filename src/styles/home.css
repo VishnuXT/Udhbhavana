@@ -1,0 +1,846 @@
+@import './variables.css';
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero-section {
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-16);
+  background: linear-gradient(180deg, #FFFFFF 0%, #F4F7FC 100%);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.35rem 0.85rem;
+  background-color: #EBF3FC;
+  color: var(--color-primary-navy);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  border: 1px solid #D0E2F7;
+}
+
+.hero-logo-wrapper {
+  margin-bottom: var(--space-4);
+  max-width: 480px;
+}
+
+.hero-logo-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(20, 42, 85, 0.12));
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+  font-weight: 800;
+  color: var(--color-primary-navy);
+  line-height: 1.1;
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.02em;
+}
+
+.hero-tagline-box {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  background-color: #FFFDF5;
+  border-left: 4px solid var(--color-accent-yellow);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.hero-tagline {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary-navy);
+}
+
+.hero-awareness-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background-color: var(--color-accent-green-bg);
+  color: var(--color-accent-green);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  border: 1px solid #C7EED8;
+  margin-bottom: var(--space-5);
+}
+
+.hero-date-venue-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-primary-navy);
+}
+
+.hero-meta-icon {
+  color: var(--color-action-blue);
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Poster Preview Card in Hero */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.poster-preview-card {
+  position: relative;
+  background-color: var(--color-white);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  max-width: 380px;
+  width: 100%;
+  transition: transform var(--transition-normal);
+  cursor: pointer;
+}
+
+.poster-preview-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(20, 42, 85, 0.14);
+}
+
+.poster-thumb-wrapper {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.poster-thumb-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1.414;
+  object-fit: cover;
+  display: block;
+}
+
+.poster-overlay-badge {
+  position: absolute;
+  bottom: var(--space-3);
+  right: var(--space-3);
+  background-color: rgba(20, 42, 85, 0.85);
+  color: var(--color-white);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.poster-caption {
+  margin-top: var(--space-2);
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   ABOUT SECTION
+   ========================================================================== */
+.about-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: var(--space-10);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.about-text p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.about-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.about-highlight-box {
+  background-color: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  border-left: 4px solid var(--color-action-blue);
+}
+
+.about-highlight-box.highlight-yellow {
+  border-left-color: var(--color-accent-yellow);
+}
+
+.about-highlight-box.highlight-green {
+  border-left-color: var(--color-accent-green);
+}
+
+.about-highlight-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary-navy);
+  margin-bottom: var(--space-1);
+}
+
+.about-highlight-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   COMPETITIONS SECTION
+   ========================================================================== */
+.competitions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.competition-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-subtle);
+}
+
+.competition-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: #CFD9E8;
+}
+
+.competition-card-header {
+  padding: var(--space-5) var(--space-5) var(--space-3);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.competition-icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-color: #EBF3FC;
+  color: var(--color-action-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.competition-card-body {
+  padding: 0 var(--space-5) var(--space-5);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.competition-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary-navy);
+  margin-bottom: var(--space-2);
+}
+
+.competition-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--space-4);
+  flex-grow: 1;
+}
+
+.competition-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+  margin-bottom: var(--space-4);
+}
+
+.competition-meta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.competition-meta-row strong {
+  color: var(--color-text-primary);
+}
+
+.competition-card-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+
+.competition-card-footer .btn {
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+  padding: 0.6rem 0.75rem;
+}
+
+/* ==========================================================================
+   PRIZE POOL SECTION
+   ========================================================================== */
+.prize-banner {
+  background: linear-gradient(135deg, var(--color-primary-navy) 0%, #0B1730 100%);
+  border-radius: var(--radius-xl);
+  padding: var(--space-12) var(--space-8);
+  color: var(--color-white);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.prize-trophy-icon {
+  color: var(--color-accent-yellow);
+  margin-bottom: var(--space-3);
+}
+
+.prize-headline {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent-yellow);
+  margin-bottom: var(--space-2);
+}
+
+.prize-amount {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 800;
+  color: var(--color-white);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-3);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.prize-desc {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #CBD5E1;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   INAUGURATION SECTION
+   ========================================================================== */
+.inauguration-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: var(--space-8);
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  box-shadow: var(--shadow-sm);
+}
+
+.guest-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-full);
+  background-color: #EBF3FC;
+  border: 3px solid #D0E2F7;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-action-blue);
+}
+
+.guest-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.guest-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.guest-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-action-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-1);
+}
+
+.guest-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary-navy);
+  margin-bottom: var(--space-1);
+}
+
+.guest-designation {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+}
+
+.guest-status-note {
+  font-size: 0.8rem;
+  color: #B47805;
+  background-color: #FEF8E7;
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  width: fit-content;
+}
+
+/* ==========================================================================
+   EVENT INFO & VENUE SECTION
+   ========================================================================== */
+.event-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+
+.info-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-subtle);
+}
+
+.info-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background-color: #EBF3FC;
+  color: var(--color-action-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-card-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+}
+
+.info-card-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary-navy);
+  line-height: 1.4;
+}
+
+.info-card-sub {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   ANNOUNCEMENTS SECTION
+   ========================================================================== */
+.announcements-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.announcement-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  box-shadow: var(--shadow-subtle);
+  border-left: 4px solid var(--color-action-blue);
+}
+
+.announcement-icon {
+  color: var(--color-action-blue);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.announcement-content {
+  flex-grow: 1;
+}
+
+.announcement-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary-navy);
+  margin-bottom: var(--space-1);
+}
+
+.announcement-msg {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.announcement-meta {
+  margin-top: var(--space-2);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: var(--space-10) var(--space-4);
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--color-border);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.empty-state-icon {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.empty-state-text {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   CONTACT & FOOTER
+   ========================================================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  background-color: var(--color-white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  padding: var(--space-10);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-color: #EBF3FC;
+  color: var(--color-action-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-details h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+
+.contact-details p {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.contact-social-links {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.social-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-navy);
+  transition: all var(--transition-fast);
+}
+
+.social-icon-btn:hover {
+  background-color: var(--color-action-blue);
+  color: var(--color-white);
+  border-color: var(--color-action-blue);
+}
+
+/* Footer */
+.site-footer {
+  background-color: var(--color-primary-navy);
+  color: #94A3B8;
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-8);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-10);
+  margin-bottom: var(--space-12);
+}
+
+.footer-brand h3 {
+  color: var(--color-white);
+  font-size: 1.35rem;
+  margin-bottom: var(--space-2);
+}
+
+.footer-brand p {
+  color: #94A3B8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 440px;
+}
+
+.footer-col h4 {
+  color: var(--color-white);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-links a {
+  color: #94A3B8;
+  font-size: 0.9rem;
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--color-white);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-8);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.footer-admin-link {
+  color: #64748B;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.footer-admin-link:hover {
+  color: #CBD5E1;
+}
+
+/* Maintenance Banner */
+.maintenance-banner {
+  background-color: #FEF3C7;
+  border-bottom: 1px solid #FCD34D;
+  color: #92400E;
+  padding: var(--space-3) var(--space-4);
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   RESPONSIVE QUERIES
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .hero-visual {
+    order: -1;
+    justify-content: flex-start;
+  }
+
+  .poster-preview-card {
+    max-width: 280px;
+  }
+
+  .competitions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .event-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-card {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    padding: var(--space-6);
+  }
+
+  .inauguration-card {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-4);
+  }
+
+  .inauguration-card .guest-status-note {
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+@media (max-width: 640px) {
+  .competitions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .hero-date-venue-meta {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .prize-amount {
+    font-size: 2.2rem;
+  }
+}
