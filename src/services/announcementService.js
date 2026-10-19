@@ -19,20 +19,33 @@ const LOCAL_STORAGE_KEY = 'udhbhavana_announcements';
 let isSeeding = false;
 
 function getLocalAnnouncements() {
-  const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
-  if (cached) {
+  try {
+    const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (cached) {
+      try {
+        return JSON.parse(cached);
+      } catch {
+        // ignore
+      }
+    }
+    saveLocalAnnouncements(initialAnnouncements);
+    return initialAnnouncements;
+  } catch {
+    return initialAnnouncements;
+  }
+}
+
+function saveLocalAnnouncements(list) {
+  try {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(list));
+  } catch (err) {
+    console.warn('[Storage] Quota exceeded saving announcements to localStorage:', err);
     try {
-      return JSON.parse(cached);
+      localStorage.removeItem(LOCAL_STORAGE_KEY);
     } catch {
       // ignore
     }
   }
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(initialAnnouncements));
-  return initialAnnouncements;
-}
-
-function saveLocalAnnouncements(list) {
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(list));
   window.dispatchEvent(new Event('udhbhavana_announcements_change'));
 }
 

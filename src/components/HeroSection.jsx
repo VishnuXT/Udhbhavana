@@ -36,7 +36,7 @@ export function HeroSection({ siteConfig }) {
             <div className="hero-logo-wrapper">
               <img 
                 src={logoImg} 
-                alt={`${siteConfig?.eventName || 'Udhbhavana 2027'} Official Logo`}
+                alt={`${siteConfig?.eventName || 'Udhbhavana 2026'} Official Logo`}
                 className="hero-logo-img"
                 fetchPriority="high"
                 loading="eager"
@@ -125,7 +125,7 @@ export function HeroSection({ siteConfig }) {
         isOpen={isPosterModalOpen} 
         onClose={() => setIsPosterModalOpen(false)} 
         posterUrl={posterImg}
-        title="Udhbhavana 2027 Official Poster"
+        title={`${siteConfig?.eventName || 'Udhbhavana 2026'} Official Poster`}
       />
     </section>
   );

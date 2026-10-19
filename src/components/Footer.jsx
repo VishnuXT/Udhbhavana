@@ -10,7 +10,7 @@ export function Footer({ siteConfig }) {
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <h3>{siteConfig?.eventName || 'Udhbhavana 2027'}</h3>
+            <h3>{siteConfig?.eventName || 'Udhbhavana 2026'}</h3>
             <p>
               Presented by {siteConfig?.institutionName || 'Sree Buddha College of Engineering (Autonomous)'}, in association with {siteConfig?.associationName || 'Operation Toofan'}.
             </p>

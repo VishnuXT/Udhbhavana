@@ -1,11 +1,11 @@
 export const initialSiteConfig = {
   // Hero & Core Branding
-  eventName: "Udhbhavana 2027",
-  tagline: "Aim IT.. Win IT",
-  awarenessMessage: "No to drugs, Yes to life",
+  eventName: "Udhbhavana 2026",
+  tagline: "Aim IT..Win IT",
+  awarenessMessage: "Say No To Drugs..Say Yes to Life..!",
   institutionName: "Sree Buddha College of Engineering, Autonomous",
   associationName: "Operation Toofan",
-  registrationUrl: "https://forms.google.com",
+  registrationUrl: "https://forms.gle/ZK8JZ86X24HNUHgm8",
   heroExploreBtnText: "Explore Competitions",
   heroRegisterBtnText: "Register Now",
   logoUrl: "/logo.png",

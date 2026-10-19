@@ -344,7 +344,85 @@
   flex: 1;
   justify-content: center;
   text-align: center;
-  padding: 0.6rem 0.75rem;
+  padding: 0.65rem 0.75rem;
+}
+
+/* ==========================================================================
+   COMPETITIONS REGISTRATION CALLOUT
+   ========================================================================== */
+.competitions-register-banner {
+  margin-top: var(--space-10);
+  background: linear-gradient(135deg, #F0F6FD 0%, #FFFFFF 100%);
+  border: 1.5px solid #CFE2FE;
+  border-radius: var(--radius-xl);
+  padding: var(--space-6) var(--space-8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  box-shadow: 0 8px 24px rgba(20, 42, 85, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.competitions-register-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-action-blue) 0%, var(--color-accent-yellow) 100%);
+}
+
+.competitions-register-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  flex: 1;
+}
+
+.competitions-register-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--color-primary-navy) 0%, var(--color-action-blue) 100%);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(40, 120, 208, 0.25);
+}
+
+.competitions-register-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary-navy);
+  margin-bottom: var(--space-1);
+}
+
+.competitions-register-desc {
+  font-size: 0.925rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.competitions-register-action {
+  flex-shrink: 0;
+}
+
+.competitions-register-action .btn {
+  white-space: nowrap;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(40, 120, 208, 0.28);
+  transition: all var(--transition-fast);
+}
+
+.competitions-register-action .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 120, 208, 0.38);
 }
 
 /* ==========================================================================
@@ -966,6 +1044,28 @@
 
   .competition-card-footer .btn {
     width: 100%;
+  }
+
+  .competitions-register-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-6) var(--space-5);
+    gap: var(--space-5);
+  }
+
+  .competitions-register-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .competitions-register-action {
+    width: 100%;
+  }
+
+  .competitions-register-action .btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .prize-banner {

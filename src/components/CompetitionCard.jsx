@@ -9,7 +9,6 @@ import {
   Calendar, 
   Clock, 
   MapPin, 
-  ArrowUpRight, 
   Info,
   X 
 } from 'lucide-react';
@@ -24,14 +23,8 @@ function getCompetitionIcon(title = '') {
   return <Trophy size={22} />;
 }
 
-export function CompetitionCard({ competition, siteConfig }) {
+export function CompetitionCard({ competition }) {
   const [showModal, setShowModal] = useState(false);
-
-  const targetRegUrl = (competition.registrationUrl && competition.registrationUrl.trim() !== '')
-    ? competition.registrationUrl.trim()
-    : (siteConfig?.registrationUrl && siteConfig.registrationUrl.trim() !== '')
-      ? siteConfig.registrationUrl.trim()
-      : 'https://forms.google.com';
 
   return (
     <>
@@ -81,21 +74,11 @@ export function CompetitionCard({ competition, siteConfig }) {
               type="button" 
               className="btn btn-secondary btn-sm"
               onClick={() => setShowModal(true)}
-              style={{ flex: 1, justifyContent: 'center' }}
+              style={{ width: '100%', justifyContent: 'center' }}
             >
-              <Info size={14} />
+              <Info size={15} />
               View Details
             </button>
-            <a 
-              href={targetRegUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="btn btn-primary btn-sm"
-              style={{ flex: 1, justifyContent: 'center' }}
-            >
-              Register
-              <ArrowUpRight size={14} />
-            </a>
           </div>
         </div>
       </article>
@@ -193,39 +176,6 @@ export function CompetitionCard({ competition, siteConfig }) {
                   </div>
                 </div>
               )}
-
-              {/* Direct Registration Form Callout */}
-              <div style={{
-                marginTop: '1.25rem',
-                padding: '1rem',
-                backgroundColor: '#EFF6FF',
-                borderRadius: '8px',
-                border: '1px solid #BFDBFE',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap',
-                gap: '0.75rem'
-              }}>
-                <div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#1E40AF' }}>
-                    Registration Link
-                  </div>
-                  <div style={{ fontSize: '0.8rem', color: '#3B82F6' }}>
-                    Click to open official registration form for {competition.title}
-                  </div>
-                </div>
-                <a 
-                  href={targetRegUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="btn btn-primary btn-sm"
-                  style={{ textDecoration: 'none' }}
-                >
-                  Open Registration Form
-                  <ArrowUpRight size={14} />
-                </a>
-              </div>
             </div>
 
             <div className="modal-footer">
@@ -236,15 +186,6 @@ export function CompetitionCard({ competition, siteConfig }) {
               >
                 Close
               </button>
-              <a 
-                href={targetRegUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="btn btn-primary btn-sm"
-              >
-                Register for this Event
-                <ArrowUpRight size={15} />
-              </a>
             </div>
           </div>
         </div>

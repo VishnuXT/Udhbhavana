@@ -57,7 +57,7 @@ export function Navbar({ siteConfig }) {
           href="#hero" 
           className="navbar-brand"
           onClick={(e) => { e.preventDefault(); scrollTo('hero'); }}
-          aria-label={`${siteConfig?.eventName || 'Udhbhavana 2027'} Home`}
+          aria-label={`${siteConfig?.eventName || 'Udhbhavana 2026'} Home`}
         >
           <img 
             src={siteConfig?.logoUrl || '/logo.png'} 
@@ -67,7 +67,7 @@ export function Navbar({ siteConfig }) {
             loading="eager"
           />
           <div className="navbar-brand-text">
-            <span className="navbar-brand-title">{siteConfig?.eventName || 'Udhbhavana 2027'}</span>
+            <span className="navbar-brand-title">{siteConfig?.eventName || 'Udhbhavana 2026'}</span>
             <span className="navbar-brand-sub">SBCE × Toofan</span>
           </div>
         </a>

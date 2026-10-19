@@ -270,9 +270,6 @@ export function CompetitionManager({
                     </td>
                     <td>
                       <div style={{ fontWeight: 600, color: '#142A55' }}>{comp.title}</div>
-                      <div style={{ fontSize: '0.75rem', color: '#64748B' }}>
-                        {comp.registrationUrl ? '🔗 Has custom registration URL' : 'No direct URL (uses global button)'}
-                      </div>
                     </td>
                     <td>
                       <span className="badge badge-navy">{comp.category || 'Contest'}</span>
@@ -527,20 +524,6 @@ export function CompetitionManager({
                       <option value="Closed">Closed</option>
                     </select>
                   </div>
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">
-                    Specific Registration Link
-                    <span className="form-hint">(Optional — if track has a unique Google Form)</span>
-                  </label>
-                  <input 
-                    type="url" 
-                    className="form-input" 
-                    value={formData.registrationUrl} 
-                    onChange={(e) => setFormData({ ...formData, registrationUrl: e.target.value })} 
-                    placeholder="https://forms.gle/..."
-                  />
                 </div>
 
                 <div className="form-group">

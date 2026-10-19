@@ -19,20 +19,44 @@ const LOCAL_STORAGE_KEY = 'udhbhavana_competitions';
 let isSeeding = false;
 
 function getLocalCompetitions() {
-  const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
-  if (cached) {
-    try {
-      return JSON.parse(cached);
-    } catch {
-      // ignore
+  try {
+    const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (cached) {
+      try {
+        return JSON.parse(cached);
+      } catch {
+        // ignore
+      }
     }
+    saveLocalCompetitions(initialCompetitions);
+    return initialCompetitions;
+  } catch {
+    return initialCompetitions;
   }
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(initialCompetitions));
-  return initialCompetitions;
 }
 
 function saveLocalCompetitions(list) {
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(list));
+  try {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(list));
+  } catch (err) {
+    console.warn('[Storage] Quota exceeded saving competitions to localStorage:', err);
+    try {
+      const lightweight = list.map(item => {
+        if (item.imageUrl && (item.imageUrl.startsWith('data:') || item.imageUrl.length > 1024 * 10)) {
+          return { ...item, imageUrl: '' };
+        }
+        return item;
+      });
+      localStorage.removeItem(LOCAL_STORAGE_KEY);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lightweight));
+    } catch {
+      try {
+        localStorage.removeItem(LOCAL_STORAGE_KEY);
+      } catch {
+        // ignore
+      }
+    }
+  }
   window.dispatchEvent(new Event('udhbhavana_competitions_change'));
 }
 

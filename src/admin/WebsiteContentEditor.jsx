@@ -25,9 +25,10 @@ export function WebsiteContentEditor({ siteConfig, onSave, onNavigateTab }) {
   const [activeSection, setActiveSection] = useState('all');
 
   useEffect(() => {
-    setFormData(siteConfig);
-    setIsDirty(false);
-  }, [siteConfig]);
+    if (!isDirty) {
+      setFormData(siteConfig);
+    }
+  }, [siteConfig, isDirty]);
 
   const handleChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -250,7 +251,7 @@ export function WebsiteContentEditor({ siteConfig, onSave, onNavigateTab }) {
                   className="form-input" 
                   value={formData?.eventName || ''} 
                   onChange={(e) => handleChange('eventName', e.target.value)} 
-                  placeholder="e.g. Udhbhavana 2027"
+                  placeholder="e.g. Udhbhavana 2026"
                   required 
                 />
                 <span className="form-hint">Displayed in page title, hero visual, and navbar.</span>
@@ -284,8 +285,8 @@ export function WebsiteContentEditor({ siteConfig, onSave, onNavigateTab }) {
 
               <div className="form-group">
                 <label className="form-label" htmlFor="registrationUrl">
-                  Global Registration Form Link
-                  <span className="form-hint">(Used by Hero 'Register Now' button & fallback for cards)</span>
+                  Unified Registration Form Link
+                  <span className="form-hint">(Used by Hero button, Navbar, and the Competitions section registration button)</span>
                 </label>
                 <input 
                   id="registrationUrl"

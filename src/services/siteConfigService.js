@@ -23,29 +23,56 @@ function sanitizeConfig(config) {
     sanitized.posterUrl = sanitized.posterUrl.replace('/src/assets/', '/');
     modified = true;
   }
-  if (sanitized.eventName === 'Udhbhavana 2026') {
-    sanitized.eventName = 'Udhbhavana 2027';
-    modified = true;
-  }
   return { data: sanitized, modified };
 }
 
-function getLocalConfig() {
-  const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
-  if (cached) {
+function safeSetLocalConfig(config) {
+  if (!config) return;
+  try {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(config));
+  } catch (err) {
+    console.warn('[Storage] Quota exceeded saving full config to localStorage. Attempting lightweight cache:', err);
     try {
-      const parsed = JSON.parse(cached);
-      const { data, modified } = sanitizeConfig(parsed);
-      if (modified) {
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+      // Strip large data URLs (images) to fit within browser storage quota
+      const lightweight = { ...config };
+      for (const key of Object.keys(lightweight)) {
+        if (typeof lightweight[key] === 'string' && (lightweight[key].startsWith('data:') || lightweight[key].length > 1024 * 10)) {
+          delete lightweight[key];
+        }
       }
-      return data;
-    } catch {
-      // ignore
+      localStorage.removeItem(LOCAL_STORAGE_KEY);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lightweight));
+    } catch (fallbackErr) {
+      console.warn('[Storage] Could not write lightweight config to localStorage. Clearing key to recover quota:', fallbackErr);
+      try {
+        localStorage.removeItem(LOCAL_STORAGE_KEY);
+      } catch {
+        // ignore
+      }
     }
   }
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(initialSiteConfig));
-  return initialSiteConfig;
+}
+
+function getLocalConfig() {
+  try {
+    const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        const { data, modified } = sanitizeConfig(parsed);
+        if (modified) {
+          safeSetLocalConfig(data);
+        }
+        return data;
+      } catch {
+        // ignore
+      }
+    }
+    safeSetLocalConfig(initialSiteConfig);
+    return initialSiteConfig;
+  } catch {
+    return initialSiteConfig;
+  }
 }
 
 export const siteConfigService = {
@@ -87,14 +114,14 @@ export const siteConfigService = {
           updatedBy: userEmail
         };
         await setDoc(docRef, payload, { merge: true });
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newConfig));
+        safeSetLocalConfig(newConfig);
         window.dispatchEvent(new CustomEvent('udhbhavana_config_change', { detail: newConfig }));
         return { success: true, error: null };
       } catch (err) {
         return { success: false, error: err.message };
       }
     } else {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newConfig));
+      safeSetLocalConfig(newConfig);
       window.dispatchEvent(new CustomEvent('udhbhavana_config_change', { detail: newConfig }));
       return { success: true, error: null };
     }

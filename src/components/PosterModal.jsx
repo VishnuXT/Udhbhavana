@@ -44,7 +44,7 @@ export function PosterModal({ isOpen, onClose, posterUrl, title = "Official Even
         <div style={{ padding: '0.75rem', backgroundColor: '#0D1C3A', display: 'flex', justifyContent: 'center' }}>
           <img 
             src={posterUrl} 
-            alt="Official Udhbhavana 2027 Event Poster" 
+            alt="Official Udhbhavana 2026 Event Poster" 
             style={{ maxHeight: '78vh', width: 'auto', borderRadius: '4px', objectFit: 'contain' }} 
           />
         </div>

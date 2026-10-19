@@ -42,7 +42,7 @@ export function AdminLogin() {
         <div className="admin-login-header">
           <img 
             src="/logo.png" 
-            alt="Udhbhavana 2027 Logo" 
+            alt="Udhbhavana 2026 Logo" 
             className="admin-login-logo" 
           />
           <h2>Administrator Portal</h2>

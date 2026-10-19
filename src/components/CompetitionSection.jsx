@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trophy } from 'lucide-react';
+import { Trophy, ArrowUpRight, ClipboardCheck } from 'lucide-react';
 import { CompetitionCard } from './CompetitionCard';
 
 export function CompetitionSection({ competitions = [], siteConfig }) {
@@ -8,6 +8,10 @@ export function CompetitionSection({ competitions = [], siteConfig }) {
   const publishedCompetitions = competitions.filter((c) => c.published !== false);
 
   if (publishedCompetitions.length === 0) return null;
+
+  const registrationUrl = (siteConfig?.registrationUrl && siteConfig.registrationUrl.trim() !== '')
+    ? siteConfig.registrationUrl.trim()
+    : 'https://forms.google.com';
 
   return (
     <section id="competitions" className="section">
@@ -33,6 +37,35 @@ export function CompetitionSection({ competitions = [], siteConfig }) {
               siteConfig={siteConfig} 
             />
           ))}
+        </div>
+
+        {/* Unified / Single Registration Callout below the cards */}
+        <div className="competitions-register-banner">
+          <div className="competitions-register-content">
+            <div className="competitions-register-icon">
+              <ClipboardCheck size={28} />
+            </div>
+            <div className="competitions-register-text">
+              <h3 className="competitions-register-title">
+                Single Registration for All Competitions
+              </h3>
+              <p className="competitions-register-desc">
+                We use a single common registration form for all events. Choose your desired competitions and complete your registration easily in one place.
+              </p>
+            </div>
+          </div>
+          <div className="competitions-register-action">
+            <a 
+              href={registrationUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn btn-primary btn-lg"
+              id="competition-section-register-btn"
+            >
+              {siteConfig?.heroRegisterBtnText || 'Register for Competitions'}
+              <ArrowUpRight size={18} />
+            </a>
+          </div>
         </div>
       </div>
     </section>

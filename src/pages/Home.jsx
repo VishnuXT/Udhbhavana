@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSiteConfig } from '../hooks/useSiteConfig';
 import { useCompetitions } from '../hooks/useCompetitions';
 import { useAnnouncements } from '../hooks/useAnnouncements';
+import { SplashScreen } from '../components/SplashScreen';
 import { Navbar } from '../components/Navbar';
 import { HeroSection } from '../components/HeroSection';
 import { AboutSection } from '../components/AboutSection';
@@ -19,34 +20,16 @@ export function Home() {
   const { siteConfig, loading: configLoading } = useSiteConfig();
   const { competitions } = useCompetitions(true);
   const { announcements } = useAnnouncements(true);
+  const [showSplash, setShowSplash] = useState(true);
 
-  if (configLoading) {
-    return (
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        gap: '1rem',
-        backgroundColor: '#FFFFFF'
-      }}>
-        <div style={{
-          width: '42px',
-          height: '42px',
-          border: '3px solid #E2E8F0',
-          borderTopColor: '#2878D0',
-          borderRadius: '50%',
-          animation: 'spin 1s linear infinite'
-        }} />
-        <style>{`@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}</style>
-        <p style={{ color: '#64748B', fontWeight: 500 }}>Loading Portal...</p>
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (siteConfig?.eventName) {
+      document.title = `${siteConfig.eventName} | ${siteConfig.tagline || 'Aim IT.. Win IT'} | ${siteConfig.institutionName || 'Sree Buddha College of Engineering'}`;
+    }
+  }, [siteConfig]);
 
-  // Site unpublishing / Maintenance mode check
-  if (siteConfig?.published === false) {
+  // Site unpublishing / Maintenance mode check (only when not loading)
+  if (!configLoading && siteConfig?.published === false) {
     return (
       <div style={{
         minHeight: '100vh',
@@ -96,19 +79,29 @@ export function Home() {
   }
 
   return (
-    <div className="site-wrapper">
-      <Navbar siteConfig={siteConfig} />
-      <main id="main-content">
-        <HeroSection siteConfig={siteConfig} />
-        <AboutSection siteConfig={siteConfig} />
-        <CompetitionSection competitions={competitions} siteConfig={siteConfig} />
-        <PrizeSection siteConfig={siteConfig} />
-        <InaugurationSection siteConfig={siteConfig} />
-        <EventInfoSection siteConfig={siteConfig} />
-        <AnnouncementSection announcements={announcements} siteConfig={siteConfig} />
-        <ContactSection siteConfig={siteConfig} />
-      </main>
-      <Footer siteConfig={siteConfig} />
-    </div>
+    <>
+      {showSplash && (
+        <SplashScreen 
+          siteConfig={siteConfig} 
+          isLoading={configLoading} 
+          onFinish={() => setShowSplash(false)} 
+        />
+      )}
+
+      <div className="site-wrapper">
+        <Navbar siteConfig={siteConfig} />
+        <main id="main-content">
+          <HeroSection siteConfig={siteConfig} />
+          <AboutSection siteConfig={siteConfig} />
+          <CompetitionSection competitions={competitions} siteConfig={siteConfig} />
+          <PrizeSection siteConfig={siteConfig} />
+          <InaugurationSection siteConfig={siteConfig} />
+          <EventInfoSection siteConfig={siteConfig} />
+          <AnnouncementSection announcements={announcements} siteConfig={siteConfig} />
+          <ContactSection siteConfig={siteConfig} />
+        </main>
+        <Footer siteConfig={siteConfig} />
+      </div>
+    </>
   );
 }

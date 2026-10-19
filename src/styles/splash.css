@@ -1,0 +1,372 @@
+/* ==========================================================================
+   UDHBHAVANA 2026 — SPLASH SCREEN
+   Responsive across Mobile, Tablet, and Laptop/Desktop
+   ========================================================================== */
+
+.splash-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #060D1A 0%, #0D1C3A 50%, #060D1A 100%);
+  overflow: hidden;
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform, filter;
+  pointer-events: auto;
+}
+
+.splash-overlay.splash-exit {
+  opacity: 0;
+  transform: scale(1.05);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+/* Ambient dynamic background lighting */
+.splash-bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  opacity: 0.55;
+  animation: splashPulse 4s ease-in-out infinite alternate;
+}
+
+.splash-glow-1 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(40, 120, 208, 0.45) 0%, rgba(40, 120, 208, 0) 70%);
+  top: -10%;
+  left: -5%;
+}
+
+.splash-glow-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(244, 185, 40, 0.3) 0%, rgba(244, 185, 40, 0) 70%);
+  bottom: -15%;
+  right: -5%;
+  animation-delay: -2s;
+}
+
+.splash-glow-center {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(20, 42, 85, 0) 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Subtle tech grid mesh in background */
+.splash-grid-mesh {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+}
+
+/* Central Content Container */
+.splash-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  max-width: 540px;
+  width: 100%;
+  animation: splashFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Institution & Alliance Pill */
+.splash-institution-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.4rem 0.95rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #93C5FD;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  animation: splashSlideDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.splash-institution-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #F4B928;
+  box-shadow: 0 0 8px #F4B928;
+}
+
+/* Logo Box & Aura */
+.splash-logo-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  animation: splashFloat 3s ease-in-out infinite alternate;
+}
+
+.splash-logo-halo {
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(40, 120, 208, 0.35) 0%, rgba(244, 185, 40, 0.15) 50%, transparent 75%);
+  filter: blur(24px);
+  z-index: 1;
+}
+
+.splash-logo-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.45)) 
+          drop-shadow(0 0 20px rgba(40, 120, 208, 0.3));
+  transition: transform 0.3s ease;
+}
+
+/* Tagline & Awareness */
+.splash-tagline {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, #FFFFFF 20%, #F4B928 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.65rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.splash-awareness-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(36, 163, 107, 0.14);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: #A7F3D0;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 1.85rem;
+}
+
+/* Sleek Progress Bar */
+.splash-loader-wrap {
+  width: 100%;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.splash-progress-track {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.splash-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #2878D0 0%, #38BDF8 50%, #F4B928 100%);
+  border-radius: 9999px;
+  transition: width 0.25s ease-out;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+  position: relative;
+}
+
+.splash-progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  animation: splashShimmer 1.4s infinite;
+}
+
+.splash-status-text {
+  font-size: 0.76rem;
+  color: #94A3B8;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  min-height: 18px;
+  transition: opacity 0.2s ease;
+}
+
+/* ==========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes splashFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes splashSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes splashFloat {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes splashPulse {
+  0% {
+    opacity: 0.45;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes splashShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN: MOBILE & LAPTOP
+   ========================================================================== */
+
+/* Laptop & Large Desktop View */
+@media (min-width: 1024px) {
+  .splash-content {
+    max-width: 580px;
+    padding: 3rem 2rem;
+  }
+
+  .splash-logo-img {
+    max-width: 360px;
+  }
+
+  .splash-tagline {
+    font-size: 1.55rem;
+  }
+
+  .splash-institution-badge {
+    font-size: 0.82rem;
+    padding: 0.45rem 1.15rem;
+  }
+
+  .splash-loader-wrap {
+    max-width: 320px;
+  }
+}
+
+/* Tablet View */
+@media (max-width: 1023px) and (min-width: 641px) {
+  .splash-logo-img {
+    max-width: 300px;
+  }
+
+  .splash-tagline {
+    font-size: 1.3rem;
+  }
+}
+
+/* Mobile View */
+@media (max-width: 640px) {
+  .splash-content {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .splash-institution-badge {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.8rem;
+    margin-bottom: 1.15rem;
+    max-width: 90vw;
+    text-align: center;
+  }
+
+  .splash-logo-img {
+    max-width: 230px;
+  }
+
+  .splash-logo-wrap {
+    margin-bottom: 1.15rem;
+  }
+
+  .splash-tagline {
+    font-size: 1.18rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .splash-awareness-pill {
+    font-size: 0.74rem;
+    padding: 0.28rem 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .splash-loader-wrap {
+    max-width: 220px;
+  }
+
+  .splash-status-text {
+    font-size: 0.72rem;
+  }
+
+  .splash-glow-1 {
+    width: 280px;
+    height: 280px;
+  }
+
+  .splash-glow-2 {
+    width: 300px;
+    height: 300px;
+  }
+}
