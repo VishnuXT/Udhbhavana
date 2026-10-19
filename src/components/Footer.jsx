@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Heart } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export function Footer({ siteConfig }) {

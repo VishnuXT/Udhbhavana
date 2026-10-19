@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { 
-  Sliders, 
-  Globe, 
-  ShieldCheck, 
   Database, 
   Lock, 
-  AlertTriangle, 
   AlertCircle,
   CheckCircle 
 } from 'lucide-react';

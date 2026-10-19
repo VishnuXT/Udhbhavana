@@ -138,7 +138,7 @@ export const storageService = {
     }
   },
 
-  async deleteImage(fileUrl) {
+  async deleteImage(_fileUrl) {
     // Stored directly in Firestore document; no external storage cleanup needed
     return { success: true, error: null };
   }

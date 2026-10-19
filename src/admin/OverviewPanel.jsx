@@ -5,8 +5,6 @@ import {
   Bell, 
   Globe, 
   Image as ImageIcon, 
-  Sliders, 
-  ExternalLink,
   CheckCircle,
   AlertCircle
 } from 'lucide-react';

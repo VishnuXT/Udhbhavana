@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { isFirebaseConfigured } from '../services/firebase';
-import { Lock, Mail, ArrowRight, ShieldCheck, AlertCircle, Info } from 'lucide-react';
+import { Lock, Mail, ArrowRight, AlertCircle, Info } from 'lucide-react';
 
 export function AdminLogin() {
   const [email, setEmail] = useState('');

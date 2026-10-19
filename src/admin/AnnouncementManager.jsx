@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Edit, Trash2, Bell, AlertTriangle, X, CheckCircle } from 'lucide-react';
+import { Plus, Edit, Trash2, X } from 'lucide-react';
 
 export function AnnouncementManager({ 
   announcements = [], 

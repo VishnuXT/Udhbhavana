@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bell, Info, Calendar } from 'lucide-react';
+import { Bell, Info } from 'lucide-react';
 
 export function AnnouncementSection({ announcements = [], siteConfig }) {
   if (siteConfig?.sectionVisibility?.announcements === false) return null;

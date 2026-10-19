@@ -7,9 +7,7 @@ import {
   ArrowUp, 
   ArrowDown, 
   CheckCircle, 
-  XCircle, 
   X, 
-  Trophy, 
   AlertTriangle 
 } from 'lucide-react';
 
