@@ -64,7 +64,7 @@ export function WebsiteContentEditor({ siteConfig, onSave, onNavigateTab }) {
   };
 
   const getRulesList = () => {
-    if (Array.isArray(formData?.competitionRulesList) && formData.competitionRulesList.length > 0) {
+    if (Array.isArray(formData?.competitionRulesList)) {
       return formData.competitionRulesList;
     }
     return [
@@ -131,7 +131,12 @@ export function WebsiteContentEditor({ siteConfig, onSave, onNavigateTab }) {
     setSaving(true);
     setNotification(null);
 
-    const result = await onSave(formData);
+    const payload = {
+      ...formData,
+      competitionRulesList: getRulesList()
+    };
+
+    const result = await onSave(payload);
     setSaving(false);
 
     if (result?.success) {

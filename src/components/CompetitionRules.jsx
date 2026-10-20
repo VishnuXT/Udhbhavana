@@ -12,7 +12,7 @@ export function CompetitionRules({ siteConfig }) {
 
   // Load dynamic rules array or fall back to legacy fields or defaults
   let rawRules = siteConfig?.competitionRulesList;
-  if (!Array.isArray(rawRules) || rawRules.length === 0) {
+  if (!Array.isArray(rawRules)) {
     rawRules = [
       {
         id: 'rule-1',
@@ -37,11 +37,16 @@ export function CompetitionRules({ siteConfig }) {
     ];
   }
 
-  const rules = rawRules.map((rule, index) => ({
+  const validRules = rawRules.filter(Boolean);
+  if (validRules.length === 0) {
+    return null;
+  }
+
+  const rules = validRules.map((rule, index) => ({
     step: `Rule ${String(index + 1).padStart(2, '0')}`,
-    id: rule.id || `rule-${index}`,
-    title: rule.title || `Rule ${index + 1}`,
-    description: rule.description || '',
+    id: rule?.id || `rule-${index}`,
+    title: (typeof rule === 'string' ? rule : rule?.title) || `Rule ${index + 1}`,
+    description: (typeof rule === 'object' ? rule?.description : '') || '',
     accent: ACCENTS[index % ACCENTS.length],
   }));
 
