@@ -1,6 +1,4 @@
 import React from 'react';
-import { ShieldCheck } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 export function Footer({ siteConfig }) {
   const currentYear = new Date().getFullYear();
@@ -36,16 +34,6 @@ export function Footer({ siteConfig }) {
             <p style={{ fontSize: '0.85rem', lineHeight: 1.6, color: '#94A3B8' }}>
               {siteConfig?.address || 'Pattoor P.O., Nooranad, Alappuzha (Dist.), Kerala – 690507'}
             </p>
-            <div style={{ marginTop: '1rem' }}>
-              <Link 
-                to="/admin" 
-                className="btn btn-secondary btn-sm"
-                style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: '#FFFFFF', border: '1px solid rgba(255, 255, 255, 0.2)' }}
-              >
-                <ShieldCheck size={14} />
-                <span>Admin Login</span>
-              </Link>
-            </div>
           </div>
         </div>
 
