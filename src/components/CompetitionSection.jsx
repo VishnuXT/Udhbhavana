@@ -34,10 +34,11 @@ export function CompetitionSection({ competitions = [], siteConfig }) {
         <CompetitionRules siteConfig={siteConfig} />
 
         <div className="competitions-grid">
-          {publishedCompetitions.map((comp) => (
+          {publishedCompetitions.map((comp, idx) => (
             <CompetitionCard 
               key={comp.id} 
               competition={comp} 
+              index={idx}
               siteConfig={siteConfig} 
             />
           ))}

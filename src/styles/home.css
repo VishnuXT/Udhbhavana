@@ -886,10 +886,6 @@
     margin: 0 auto;
   }
 
-  .competitions-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .event-info-grid {
     grid-template-columns: repeat(2, 1fr);
   }
