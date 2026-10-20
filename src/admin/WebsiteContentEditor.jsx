@@ -8,13 +8,16 @@ import {
   Sparkles,
   HeartHandshake,
   Trophy,
+  BookOpen,
   Award,
   UserCheck,
   Calendar,
   MessageSquare,
   Eye,
   Sliders,
-  ArrowRight
+  ArrowRight,
+  Plus,
+  Trash2
 } from 'lucide-react';
 
 export function WebsiteContentEditor({ siteConfig, onSave, onNavigateTab }) {
@@ -60,6 +63,69 @@ export function WebsiteContentEditor({ siteConfig, onSave, onNavigateTab }) {
     setNotification(null);
   };
 
+  const getRulesList = () => {
+    if (Array.isArray(formData?.competitionRulesList) && formData.competitionRulesList.length > 0) {
+      return formData.competitionRulesList;
+    }
+    return [
+      {
+        id: 'rule-1',
+        title: formData?.competitionRule1Title || 'Register Properly',
+        description: formData?.competitionRule1Desc || 'Complete registration before participating.'
+      },
+      {
+        id: 'rule-2',
+        title: formData?.competitionRule2Title || 'Follow Guidelines',
+        description: formData?.competitionRule2Desc || 'Read the rules for your chosen competition.'
+      },
+      {
+        id: 'rule-3',
+        title: formData?.competitionRule3Title || 'Maintain Fairness',
+        description: formData?.competitionRule3Desc || 'Submit original work and follow ethical practices.'
+      },
+      {
+        id: 'rule-4',
+        title: formData?.competitionRule4Title || 'Be Respectful',
+        description: formData?.competitionRule4Desc || 'Respect participants, coordinators, and judges.'
+      }
+    ];
+  };
+
+  const handleRuleChange = (index, field, value) => {
+    const currentRules = [...getRulesList()];
+    currentRules[index] = {
+      ...currentRules[index],
+      [field]: value
+    };
+    handleChange('competitionRulesList', currentRules);
+  };
+
+  const handleAddRule = () => {
+    const currentRules = [...getRulesList()];
+    const newRuleNumber = currentRules.length + 1;
+    currentRules.push({
+      id: `rule-${Date.now()}`,
+      title: `Rule ${newRuleNumber}`,
+      description: ''
+    });
+    handleChange('competitionRulesList', currentRules);
+  };
+
+  const handleRemoveRule = (index) => {
+    const currentRules = getRulesList().filter((_, i) => i !== index);
+    handleChange('competitionRulesList', currentRules);
+  };
+
+  const handleMoveRule = (index, direction) => {
+    const currentRules = [...getRulesList()];
+    const targetIndex = index + direction;
+    if (targetIndex < 0 || targetIndex >= currentRules.length) return;
+    const temp = currentRules[index];
+    currentRules[index] = currentRules[targetIndex];
+    currentRules[targetIndex] = temp;
+    handleChange('competitionRulesList', currentRules);
+  };
+
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
     setSaving(true);
@@ -87,6 +153,7 @@ export function WebsiteContentEditor({ siteConfig, onSave, onNavigateTab }) {
     { id: 'hero', label: 'Hero & Branding', icon: <Sparkles size={15} />, key: 'hero' },
     { id: 'about', label: 'About Section', icon: <HeartHandshake size={15} />, key: 'about' },
     { id: 'competitions', label: 'Competitions Header', icon: <Trophy size={15} />, key: 'competitions' },
+    { id: 'rules', label: 'Rules Blackboard', icon: <BookOpen size={15} />, key: 'competitionRules' },
     { id: 'prizes', label: 'Prize Pool', icon: <Award size={15} />, key: 'prizes' },
     { id: 'inauguration', label: 'Inauguration', icon: <UserCheck size={15} />, key: 'inauguration' },
     { id: 'venue', label: 'Venue & Schedule', icon: <Calendar size={15} />, key: 'eventInfo' },
@@ -638,7 +705,187 @@ export function WebsiteContentEditor({ siteConfig, onSave, onNavigateTab }) {
       )}
 
       {/* =========================================================================
-          SECTION 4: PRIZE POOL SECTION
+          SECTION 4: COMPETITION RULES & INSTRUCTIONS (BLACKBOARD)
+          ========================================================================= */}
+      {shouldShowSection('rules') && (
+        <div className="admin-card" style={{ marginBottom: '1.5rem' }}>
+          <div className="admin-card-header">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div className="stat-card-icon navy" style={{ width: 38, height: 38 }}>
+                <BookOpen size={18} />
+              </div>
+              <div>
+                <h3>Competition Rules & Instructions (Chalkboard)</h3>
+                <p>Classroom chalkboard rules strip displayed right above the competition cards</p>
+              </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <span style={{ fontSize: '0.8rem', color: '#64748B' }}>Show Rules Blackboard:</span>
+              <label className="switch">
+                <input 
+                  type="checkbox" 
+                  checked={formData?.sectionVisibility?.competitionRules !== false && formData?.competitionRulesVisible !== false}
+                  onChange={() => {
+                    const currentVal = formData?.sectionVisibility?.competitionRules !== false && formData?.competitionRulesVisible !== false;
+                    handleChange('competitionRulesVisible', !currentVal);
+                    handleToggleSection('competitionRules');
+                  }}
+                />
+                <span className="slider"></span>
+              </label>
+            </div>
+          </div>
+          <div className="admin-card-body">
+            {/* Header Settings */}
+            <div className="form-grid-2">
+              <div className="form-group">
+                <label className="form-label" htmlFor="competitionRulesTag">Chalk Badge Label</label>
+                <input 
+                  id="competitionRulesTag"
+                  type="text" 
+                  className="form-input" 
+                  value={formData?.competitionRulesTag ?? 'COMPETITION RULES & INSTRUCTIONS'} 
+                  onChange={(e) => handleChange('competitionRulesTag', e.target.value)} 
+                  placeholder="COMPETITION RULES & INSTRUCTIONS"
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label" htmlFor="competitionRulesHeading">Chalkboard Title</label>
+                <input 
+                  id="competitionRulesHeading"
+                  type="text" 
+                  className="form-input" 
+                  value={formData?.competitionRulesHeading ?? 'Read Before You Participate'} 
+                  onChange={(e) => handleChange('competitionRulesHeading', e.target.value)} 
+                  placeholder="Read Before You Participate"
+                />
+              </div>
+            </div>
+
+            {/* Dynamic Multiple Rules */}
+            <div style={{ marginTop: '1.25rem', paddingTop: '1.25rem', borderTop: '1px solid #E2E8F0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <div>
+                  <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: '#142A55', margin: 0 }}>
+                    Classroom Blackboard Rules ({getRulesList().length} Rules)
+                  </h4>
+                  <p style={{ fontSize: '0.8rem', color: '#64748B', margin: '2px 0 0' }}>
+                    Logos have been removed so you can add, reorder, or remove as many rules as you need.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-secondary btn-sm"
+                  onClick={handleAddRule}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
+                >
+                  <Plus size={14} />
+                  Add Rule
+                </button>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                {getRulesList().map((rule, idx) => (
+                  <div 
+                    key={rule.id || idx} 
+                    style={{ 
+                      padding: '1rem', 
+                      border: '1px solid #E2E8F0', 
+                      borderRadius: '8px', 
+                      backgroundColor: '#F8FAFC' 
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.65rem' }}>
+                      <span style={{ fontWeight: 600, fontSize: '0.85rem', color: '#142A55' }}>
+                        Rule {String(idx + 1).padStart(2, '0')}
+                      </span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                        <button
+                          type="button"
+                          className="btn btn-secondary btn-sm"
+                          onClick={() => handleMoveRule(idx, -1)}
+                          disabled={idx === 0}
+                          style={{ padding: '2px 8px', fontSize: '0.8rem', cursor: idx === 0 ? 'not-allowed' : 'pointer' }}
+                          title="Move Up"
+                        >
+                          ↑
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-secondary btn-sm"
+                          onClick={() => handleMoveRule(idx, 1)}
+                          disabled={idx === getRulesList().length - 1}
+                          style={{ padding: '2px 8px', fontSize: '0.8rem', cursor: idx === getRulesList().length - 1 ? 'not-allowed' : 'pointer' }}
+                          title="Move Down"
+                        >
+                          ↓
+                        </button>
+                        {getRulesList().length > 1 && (
+                          <button
+                            type="button"
+                            className="btn btn-sm"
+                            onClick={() => handleRemoveRule(idx)}
+                            style={{ 
+                              padding: '2px 8px', 
+                              fontSize: '0.8rem', 
+                              color: '#DC2626', 
+                              backgroundColor: '#FEE2E2',
+                              borderRadius: '4px' 
+                            }}
+                            title="Remove Rule"
+                          >
+                            <Trash2 size={13} />
+                          </button>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="form-grid-2">
+                      <div className="form-group">
+                        <label className="form-label">Rule Title</label>
+                        <input 
+                          type="text" 
+                          className="form-input" 
+                          value={rule.title || ''} 
+                          onChange={(e) => handleRuleChange(idx, 'title', e.target.value)} 
+                          placeholder="e.g. Register Properly"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label">Rule Description</label>
+                        <input 
+                          type="text" 
+                          className="form-input" 
+                          value={rule.description || ''} 
+                          onChange={(e) => handleRuleChange(idx, 'description', e.target.value)} 
+                          placeholder="Short rule explanation"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ marginTop: '1rem' }}>
+                <button
+                  type="button"
+                  className="btn btn-secondary btn-sm"
+                  onClick={handleAddRule}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
+                >
+                  <Plus size={14} />
+                  Add Another Rule
+                </button>
+              </div>
+            </div>
+          </div>
+          {renderSectionSaveBar('Competition Rules & Instructions')}
+        </div>
+      )}
+
+      {/* =========================================================================
+          SECTION 5: PRIZE POOL SECTION
           ========================================================================= */}
       {shouldShowSection('prizes') && (
         <div className="admin-card" style={{ marginBottom: '1.5rem' }}>
@@ -1280,6 +1527,7 @@ export function WebsiteContentEditor({ siteConfig, onSave, onNavigateTab }) {
               { id: 'hero', label: 'Hero Section', desc: 'Main headline, tagline, and awareness message' },
               { id: 'about', label: 'About Section', desc: 'College background and Operation Toofan details' },
               { id: 'competitions', label: 'Competitions Section', desc: '5 track competition cards and rules modal' },
+              { id: 'competitionRules', label: 'Competition Rules (Chalkboard)', desc: 'Classroom chalkboard rules strip placed above competition cards' },
               { id: 'prizes', label: 'Prize Pool Section', desc: 'Prizes over 1 Lakh banner' },
               { id: 'inauguration', label: 'Inauguration Section', desc: 'Chief Guest details and address' },
               { id: 'eventInfo', label: 'Venue & Schedule Section', desc: 'Campus location, directions, and time' },

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Trophy, ArrowUpRight, ClipboardCheck } from 'lucide-react';
 import { CompetitionCard } from './CompetitionCard';
+import { CompetitionRules } from './CompetitionRules';
 
 export function CompetitionSection({ competitions = [], siteConfig }) {
   if (siteConfig?.sectionVisibility?.competitions === false) return null;
@@ -28,6 +29,9 @@ export function CompetitionSection({ competitions = [], siteConfig }) {
             {siteConfig?.competitionsSubtitle || 'Compete across five signature tracks designed to test your technical ingenuity, artistic expression, and leadership.'}
           </p>
         </div>
+
+        {/* Competition Rules & Instructions */}
+        <CompetitionRules siteConfig={siteConfig} />
 
         <div className="competitions-grid">
           {publishedCompetitions.map((comp) => (

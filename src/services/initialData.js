@@ -29,6 +29,41 @@ export const initialSiteConfig = {
   competitionsHeading: "Explore Competitions",
   competitionsSubtitle: "Compete across five signature tracks designed to test your technical ingenuity, artistic expression, and leadership.",
 
+  // Competition Rules & Instructions (Classroom Blackboard)
+  competitionRulesVisible: true,
+  competitionRulesTag: "COMPETITION RULES & INSTRUCTIONS",
+  competitionRulesHeading: "Read Before You Participate",
+  competitionRulesList: [
+    {
+      id: "rule-1",
+      title: "Register Properly",
+      description: "Complete registration before participating."
+    },
+    {
+      id: "rule-2",
+      title: "Follow Guidelines",
+      description: "Read the rules for your chosen competition."
+    },
+    {
+      id: "rule-3",
+      title: "Maintain Fairness",
+      description: "Submit original work and follow ethical practices."
+    },
+    {
+      id: "rule-4",
+      title: "Be Respectful",
+      description: "Respect participants, coordinators, and judges."
+    }
+  ],
+  competitionRule1Title: "Register Properly",
+  competitionRule1Desc: "Complete registration before participating.",
+  competitionRule2Title: "Follow Guidelines",
+  competitionRule2Desc: "Read the rules for your chosen competition.",
+  competitionRule3Title: "Maintain Fairness",
+  competitionRule3Desc: "Submit original work and follow ethical practices.",
+  competitionRule4Title: "Be Respectful",
+  competitionRule4Desc: "Respect participants, coordinators, and judges.",
+
   // Prize Pool Section
   prizeTag: "Rewarding Innovation & Brilliance",
   prizePoolText: "Prizes over ₹1 lakh",
@@ -82,6 +117,7 @@ export const initialSiteConfig = {
     hero: true,
     about: true,
     competitions: true,
+    competitionRules: true,
     prizes: true,
     inauguration: true,
     eventInfo: true,
