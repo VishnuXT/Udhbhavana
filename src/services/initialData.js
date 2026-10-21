@@ -104,6 +104,9 @@ export const initialSiteConfig = {
   contactAccreditations: "NAAC 'A' Grade Accredited • NBA Accredited Programmes • Autonomous Institution",
   contactEmail: "udhbhavana@sbce.ac.in",
   contactPhone: "",
+  eventCoordinators: "Dr. Vinod VP # 8848118512, Mr. R Pradeep Kumar # 9446472562, Ms. Pavitha P P # 8075376012, Dr. Unnikrishnan S # 9947600545, Ms. Cinaya Tony # 9846836065",
+  eventCoordinatorsTitle: "Event Coordinators",
+  eventCoordinatorsSubtitle: "Direct contacts for event guidelines, inquiries & registration support",
   socialLinks: {
     instagram: "https://instagram.com",
     linkedin: "https://linkedin.com",

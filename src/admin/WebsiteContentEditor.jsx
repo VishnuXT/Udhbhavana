@@ -17,7 +17,8 @@ import {
   Sliders,
   ArrowRight,
   Plus,
-  Trash2
+  Trash2,
+  Users
 } from 'lucide-react';
 
 export function WebsiteContentEditor({ siteConfig, onSave, onNavigateTab }) {
@@ -1357,6 +1358,105 @@ export function WebsiteContentEditor({ siteConfig, onSave, onNavigateTab }) {
                   value={formData?.contactSubtitle || ''} 
                   onChange={(e) => handleChange('contactSubtitle', e.target.value)} 
                 />
+              </div>
+            </div>
+
+            {/* Smart Migration Assistant if coordinators were put into Section Tag/Pill */}
+            {/#\s*\d{8,}|EVENT\s+COORDINATORS/i.test(formData?.contactTag || '') && !formData?.eventCoordinators && (
+              <div style={{
+                backgroundColor: '#EFF6FF',
+                border: '1px solid #BFDBFE',
+                borderRadius: '8px',
+                padding: '0.85rem 1rem',
+                margin: '1rem 0',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '1rem',
+                flexWrap: 'wrap'
+              }}>
+                <div style={{ fontSize: '0.85rem', color: '#1E40AF', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                  <Sparkles size={18} style={{ flexShrink: 0, color: '#2563EB' }} />
+                  <div>
+                    <strong>Coordinators detected in Section Tag:</strong>
+                    <div style={{ color: '#3B82F6', fontSize: '0.8rem', marginTop: '2px' }}>
+                      Click below to move them into the dedicated coordinators field and restore the clean "Get in Touch" tag.
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  className="admin-btn admin-btn-sm"
+                  style={{ backgroundColor: '#2563EB', color: '#fff', border: 'none', padding: '6px 14px', borderRadius: '6px', fontWeight: 600, cursor: 'pointer' }}
+                  onClick={() => {
+                    const rawText = formData.contactTag || '';
+                    const coords = rawText.replace(/^(?:EVENT\s+)?COORDINATORS?[\s\-–—:]*/i, '').trim();
+                    handleChange('eventCoordinators', coords);
+                    handleChange('contactTag', 'Get in Touch');
+                  }}
+                >
+                  Move to Coordinators Field
+                </button>
+              </div>
+            )}
+
+            {/* Dedicated Event Coordinators Section in Admin */}
+            <div style={{
+              backgroundColor: '#F8FAFC',
+              border: '1px solid #E2E8F0',
+              borderRadius: '10px',
+              padding: '1.15rem',
+              marginTop: '0.75rem',
+              marginBottom: '1.25rem'
+            }}>
+              <div className="form-grid-2" style={{ marginBottom: '0.85rem' }}>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label className="form-label" htmlFor="eventCoordinatorsTitle">Coordinators Block Title</label>
+                  <input 
+                    id="eventCoordinatorsTitle"
+                    type="text" 
+                    className="form-input" 
+                    value={formData?.eventCoordinatorsTitle ?? 'Event Coordinators'} 
+                    onChange={(e) => handleChange('eventCoordinatorsTitle', e.target.value)} 
+                    placeholder="Event Coordinators"
+                  />
+                </div>
+
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label className="form-label" htmlFor="eventCoordinatorsSubtitle">Coordinators Block Subtitle</label>
+                  <input 
+                    id="eventCoordinatorsSubtitle"
+                    type="text" 
+                    className="form-input" 
+                    value={formData?.eventCoordinatorsSubtitle ?? 'Direct contacts for event guidelines, inquiries & registration support'} 
+                    onChange={(e) => handleChange('eventCoordinatorsSubtitle', e.target.value)} 
+                    placeholder="Direct contacts for event guidelines, inquiries & registration support"
+                  />
+                </div>
+              </div>
+
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label className="form-label" htmlFor="eventCoordinators" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: '#142A55' }}>
+                    <Users size={16} style={{ color: '#2878D0' }} />
+                    Event Coordinators (Names & Phone Numbers)
+                  </span>
+                  <span className="form-hint" style={{ fontWeight: 400 }}>
+                    Format: <code>Name # Phone</code> (comma or newline separated)
+                  </span>
+                </label>
+                <textarea 
+                  id="eventCoordinators"
+                  rows="3"
+                  className="form-input" 
+                  style={{ resize: 'vertical', minHeight: '85px', fontFamily: 'inherit', lineHeight: 1.5, backgroundColor: '#FFFFFF' }}
+                  value={formData?.eventCoordinators ?? (/#\s*\d{8,}|EVENT\s+COORDINATORS/i.test(formData?.contactTag || '') ? formData?.contactTag : '')} 
+                  onChange={(e) => handleChange('eventCoordinators', e.target.value)} 
+                  placeholder="Dr. Vinod VP # 8848118512, Mr. R Pradeep Kumar # 9446472562, Ms. Pavitha P P # 8075376012, Dr. Unnikrishnan S # 9947600545, Ms. Cinaya Tony # 9846836065"
+                />
+                <p className="form-hint" style={{ marginTop: '5px' }}>
+                  Each coordinator is presented in a card with automatic name formatting and instant <strong>Call</strong> & <strong>WhatsApp</strong> buttons.
+                </p>
               </div>
             </div>
 

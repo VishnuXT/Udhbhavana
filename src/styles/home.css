@@ -671,6 +671,227 @@
 }
 
 /* ==========================================================================
+   EVENT COORDINATORS SHOWCASE (Laptop & Mobile Elegant Minimal UI)
+   ========================================================================== */
+.coordinators-showcase {
+  background-color: var(--color-white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  padding: var(--space-8);
+  margin-bottom: var(--space-8);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.coordinators-showcase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-action-blue) 0%, var(--color-accent-green) 50%, var(--color-accent-yellow) 100%);
+}
+
+.coordinators-showcase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border-subtle);
+  flex-wrap: wrap;
+}
+
+.coordinators-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.coordinators-header-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background-color: #EBF3FC;
+  color: var(--color-action-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.coordinators-header-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary-navy);
+  margin-bottom: 2px;
+  letter-spacing: -0.01em;
+}
+
+.coordinators-header-subtitle {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+}
+
+.coordinators-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  background-color: #F1F5F9;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-primary-navy);
+}
+
+.coord-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-accent-green);
+  box-shadow: 0 0 0 2px var(--color-accent-green-bg);
+}
+
+.coordinators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+
+.coordinator-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.15rem 1.25rem;
+  gap: 0.9rem;
+  transition: all var(--transition-fast);
+  box-shadow: 0 1px 3px rgba(20, 42, 85, 0.04);
+}
+
+.coordinator-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.coordinator-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.coordinator-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #EBF3FC 0%, #DDEBFC 100%);
+  color: var(--color-primary-navy);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid #D0E3F8;
+}
+
+.coordinator-meta {
+  min-width: 0;
+  flex: 1;
+}
+
+.coordinator-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 3px;
+  line-height: 1.35;
+  white-space: normal;
+  overflow: visible;
+}
+
+.coordinator-phone-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.coordinator-phone-link:hover {
+  color: var(--color-action-blue);
+}
+
+.coordinator-phone-icon {
+  color: var(--color-action-blue);
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+.coordinator-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  width: 100%;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.coord-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 7px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.coord-btn-call {
+  background-color: #EBF3FC;
+  color: var(--color-action-blue);
+  border: 1px solid #D0E3F8;
+}
+
+.coord-btn-call:hover {
+  background-color: var(--color-action-blue);
+  color: var(--color-white);
+  border-color: var(--color-action-blue);
+}
+
+.coord-btn-wa {
+  background-color: var(--color-accent-green-bg);
+  color: var(--color-accent-green);
+  border: 1px solid #C4EED9;
+}
+
+.coord-btn-wa:hover {
+  background-color: var(--color-accent-green);
+  color: var(--color-white);
+  border-color: var(--color-accent-green);
+}
+
+/* ==========================================================================
    CONTACT & FOOTER
    ========================================================================== */
 .contact-grid {
@@ -922,6 +1143,10 @@
     font-size: 0.95rem;
   }
 
+  .coordinators-showcase {
+    padding: var(--space-6);
+  }
+
   .contact-grid {
     grid-template-columns: 1fr;
     padding: var(--space-6);
@@ -1099,6 +1324,45 @@
 
   .contact-card {
     padding: var(--space-5);
+  }
+
+  .coordinators-showcase {
+    padding: var(--space-5) var(--space-4);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+  }
+
+  .coordinators-showcase-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .coordinators-header-title {
+    font-size: 1.1rem;
+  }
+
+  .coordinators-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .coordinator-card {
+    padding: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .coordinator-card {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .coord-btn {
+    padding: 9px 12px;
+    font-size: 0.82rem;
+    min-height: 40px;
   }
 }
 
