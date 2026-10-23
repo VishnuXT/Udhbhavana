@@ -966,12 +966,112 @@
 }
 
 /* Footer */
+/* ==========================================================================
+   MINIMAL MARQUEE STRIP (Placed directly Above the Footer)
+   ========================================================================== */
+.marquee-minimal-bar {
+  width: 100%;
+  overflow: hidden;
+  background-color: #0b172a;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.55rem 0;
+  display: flex;
+  user-select: none;
+  font-size: 0.82rem;
+  color: #94A3B8;
+  position: relative;
+}
+
+.marquee-minimal-bar::before,
+.marquee-minimal-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 36px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-minimal-bar::before {
+  left: 0;
+  background: linear-gradient(to right, #0b172a, transparent);
+}
+
+.marquee-minimal-bar::after {
+  right: 0;
+  background: linear-gradient(to left, #0b172a, transparent);
+}
+
+.marquee-minimal-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marqueeMinimalScroll 30s linear infinite;
+}
+
+.marquee-minimal-bar:hover .marquee-minimal-track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeMinimalScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-group {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.marquee-label {
+  color: #38BDF8;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.marquee-entry {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.marquee-name {
+  color: #F1F5F9;
+  font-weight: 500;
+}
+
+.marquee-dev {
+  color: #CBD5E1;
+}
+
+.marquee-dev-name {
+  color: #F8FAFC;
+  font-weight: 600;
+}
+
+.marquee-dot {
+  color: #475569;
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+/* Footer */
 .site-footer {
   background-color: var(--color-primary-navy);
   color: #94A3B8;
-  padding-top: var(--space-16);
+  padding-top: var(--space-12);
   padding-bottom: var(--space-8);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .footer-top {
