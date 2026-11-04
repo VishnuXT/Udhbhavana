@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const DEFAULT_COORDINATORS = [
   { name: 'Dr. Vinod V P', phone: '88481 18152', cleanPhone: '918848118152' },
@@ -114,12 +115,13 @@ export function Footer({ siteConfig }) {
             <div className="footer-col">
               <h4>Quick Links</h4>
               <ul className="footer-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#competitions">Competitions</a></li>
-                <li><a href="#prizes">Prize Pool</a></li>
-                <li><a href="#venue">Venue & Map</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/#about">About</Link></li>
+                <li><Link to="/#competitions">Competitions</Link></li>
+                <li><Link to="/#prizes">Prize Pool</Link></li>
+                <li><Link to="/#venue">Venue & Map</Link></li>
+                <li><Link to="/bus-routes" style={{ color: '#F4B928', fontWeight: 600 }}>🚌 Bus Routes & Timings</Link></li>
+                <li><Link to="/#contact">Contact</Link></li>
               </ul>
             </div>
 

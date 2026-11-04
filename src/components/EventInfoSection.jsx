@@ -1,5 +1,6 @@
 import React from 'react';
-import { Calendar, Clock, MapPin, Building2, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Calendar, Clock, MapPin, Building2, ExternalLink, Bus, ArrowRight } from 'lucide-react';
 
 export function EventInfoSection({ siteConfig }) {
   if (siteConfig?.sectionVisibility?.eventInfo === false) return null;
@@ -75,6 +76,60 @@ export function EventInfoSection({ siteConfig }) {
               </a>
             )}
           </div>
+        </div>
+
+        {/* College Bus Transit Banner */}
+        <div style={{
+          marginTop: '2.5rem',
+          background: 'linear-gradient(135deg, #142A55 0%, #1F3B73 100%)',
+          borderRadius: '16px',
+          padding: '1.75rem 2rem',
+          color: '#FFFFFF',
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '1.25rem',
+          boxShadow: '0 4px 14px rgba(20, 42, 85, 0.12)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', maxWidth: '680px' }}>
+            <div style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '12px',
+              backgroundColor: 'rgba(255, 255, 255, 0.15)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#F4B928',
+              flexShrink: 0
+            }}>
+              <Bus size={26} />
+            </div>
+            <div>
+              <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.25rem' }}>
+                Official College Bus Transport (23 Active Routes)
+              </h3>
+              <p style={{ fontSize: '0.875rem', color: '#CBD5E1', margin: 0, lineHeight: 1.5 }}>
+                Direct morning pick-up across Alappuzha, Kollam, and Pathanamthitta districts arriving at Pattoor campus by 8:25 AM. Check boarding points and pickup timings.
+              </p>
+            </div>
+          </div>
+
+          <Link 
+            to="/bus-routes" 
+            className="btn btn-primary"
+            style={{
+              backgroundColor: '#F4B928',
+              color: '#0D1C3A',
+              fontWeight: 700,
+              border: 'none',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            <span>Explore Bus Routes & Timings</span>
+            <ArrowRight size={16} />
+          </Link>
         </div>
       </div>
     </section>

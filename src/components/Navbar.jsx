@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { Menu, X, ArrowUpRight, Bus } from 'lucide-react';
 
 export function Navbar({ siteConfig }) {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
+  const isHome = location.pathname === '/';
+  const isBusPage = location.pathname.startsWith('/bus-routes');
+
   useEffect(() => {
+    if (!isHome) return;
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
@@ -28,10 +36,26 @@ export function Navbar({ siteConfig }) {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHome]);
 
   const scrollTo = (id) => {
     setMobileMenuOpen(false);
+
+    if (!isHome) {
+      navigate(`/#${id}`);
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          const offset = 80;
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = element.getBoundingClientRect().top;
+          const offsetPosition = elementRect - bodyRect - offset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      }, 150);
+      return;
+    }
+
     const element = document.getElementById(id);
     if (element) {
       const offset = 80;
@@ -53,10 +77,15 @@ export function Navbar({ siteConfig }) {
     <header className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="container navbar-container">
         {/* Brand */}
-        <a 
-          href="#hero" 
+        <Link 
+          to="/" 
           className="navbar-brand"
-          onClick={(e) => { e.preventDefault(); scrollTo('hero'); }}
+          onClick={(e) => { 
+            if (isHome) {
+              e.preventDefault(); 
+              scrollTo('hero'); 
+            }
+          }}
           aria-label={`${siteConfig?.eventName || 'Udhbhavana 2026'} Home`}
         >
           <img 
@@ -70,13 +99,13 @@ export function Navbar({ siteConfig }) {
             <span className="navbar-brand-title">{siteConfig?.eventName || 'Udhbhavana 2026'}</span>
             <span className="navbar-brand-sub">SBCE × Toofan</span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Links */}
         <nav className="navbar-links" aria-label="Main Navigation">
           <button 
             type="button" 
-            className={`nav-link ${activeSection === 'hero' ? 'active' : ''}`}
+            className={`nav-link ${isHome && activeSection === 'hero' ? 'active' : ''}`}
             onClick={() => scrollTo('hero')}
           >
             Home
@@ -84,7 +113,7 @@ export function Navbar({ siteConfig }) {
           {siteConfig?.sectionVisibility?.about !== false && (
             <button 
               type="button" 
-              className={`nav-link ${activeSection === 'about' ? 'active' : ''}`}
+              className={`nav-link ${isHome && activeSection === 'about' ? 'active' : ''}`}
               onClick={() => scrollTo('about')}
             >
               About
@@ -93,7 +122,7 @@ export function Navbar({ siteConfig }) {
           {siteConfig?.sectionVisibility?.competitions !== false && (
             <button 
               type="button" 
-              className={`nav-link ${activeSection === 'competitions' ? 'active' : ''}`}
+              className={`nav-link ${isHome && activeSection === 'competitions' ? 'active' : ''}`}
               onClick={() => scrollTo('competitions')}
             >
               Competitions
@@ -102,7 +131,7 @@ export function Navbar({ siteConfig }) {
           {siteConfig?.sectionVisibility?.prizes !== false && (
             <button 
               type="button" 
-              className={`nav-link ${activeSection === 'prizes' ? 'active' : ''}`}
+              className={`nav-link ${isHome && activeSection === 'prizes' ? 'active' : ''}`}
               onClick={() => scrollTo('prizes')}
             >
               Prizes
@@ -111,16 +140,27 @@ export function Navbar({ siteConfig }) {
           {siteConfig?.sectionVisibility?.eventInfo !== false && (
             <button 
               type="button" 
-              className={`nav-link ${activeSection === 'venue' ? 'active' : ''}`}
+              className={`nav-link ${isHome && activeSection === 'venue' ? 'active' : ''}`}
               onClick={() => scrollTo('venue')}
             >
               Venue
             </button>
           )}
+
+          {/* Dedicated Bus Routes Link */}
+          <Link 
+            to="/bus-routes" 
+            className={`nav-link ${isBusPage ? 'active' : ''}`}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
+          >
+            <Bus size={15} style={{ color: isBusPage ? 'var(--color-action-blue)' : 'inherit' }} />
+            <span>Bus Routes</span>
+          </Link>
+
           {siteConfig?.sectionVisibility?.contact !== false && (
             <button 
               type="button" 
-              className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}
+              className={`nav-link ${isHome && activeSection === 'contact' ? 'active' : ''}`}
               onClick={() => scrollTo('contact')}
             >
               Contact
@@ -130,6 +170,16 @@ export function Navbar({ siteConfig }) {
 
         {/* Actions */}
         <div className="navbar-actions">
+          {/* Mobile Quick Bus Navigation Button */}
+          <Link 
+            to="/bus-routes" 
+            className={`navbar-mobile-bus-btn ${isBusPage ? 'active' : ''}`}
+            title="Bus Routes & Timings"
+            aria-label="View Bus Routes"
+          >
+            <Bus size={18} />
+          </Link>
+
           {hasRegisterUrl && (
             <a 
               href={siteConfig.registrationUrl} 
@@ -202,6 +252,17 @@ export function Navbar({ siteConfig }) {
               Venue & Schedule
             </button>
           )}
+
+          {/* Dedicated Bus Routes Mobile Link */}
+          <Link 
+            to="/bus-routes" 
+            className={`mobile-nav-link mobile-nav-bus-link ${isBusPage ? 'active' : ''}`}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <Bus size={18} className="mobile-nav-bus-icon" />
+            <span>Bus Routes</span>
+          </Link>
+
           {siteConfig?.sectionVisibility?.contact !== false && (
             <button 
               type="button" 

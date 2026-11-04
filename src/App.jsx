@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Home } from './pages/Home';
+import { BusRoutes } from './pages/BusRoutes';
 import { AdminLogin } from './pages/AdminLogin';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { ProtectedRoute } from './components/ProtectedRoute';
@@ -11,6 +12,11 @@ export default function App() {
       <Routes>
         {/* Public Landing Page */}
         <Route path="/" element={<Home />} />
+
+        {/* Dedicated Bus Routes & Transportation Page */}
+        <Route path="/bus-routes" element={<BusRoutes />} />
+        <Route path="/bus-details" element={<Navigate to="/bus-routes" replace />} />
+        <Route path="/transport" element={<Navigate to="/bus-routes" replace />} />
 
         {/* Admin Login */}
         <Route path="/admin/login" element={<AdminLogin />} />
