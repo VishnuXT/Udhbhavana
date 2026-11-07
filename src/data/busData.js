@@ -30,6 +30,43 @@ export const transportGuidelines = [
   }
 ];
 
+export const additionalBusFacilities = {
+  eventDate: "09 November 2026",
+  eventDateShort: "09/11/26",
+  title: "Additional Bus Facilities (09/11/26)",
+  subtitle: "Special Event Day Transit for Udhbhavana 2026",
+  description: "Special event-day morning buses arranged on 09 November 2026 for participants, attendees, and guests to reach SBCE Pattoor campus before the 9:30 AM inaugural session.",
+  services: [
+    {
+      id: "pandalam",
+      location: "Pandalam",
+      busCountLabel: "2 Buses",
+      boardingPoint: "KSRTC Stand",
+      pickupTime: "9:00 AM",
+      destination: "SBCE Pattoor Campus",
+      highlight: "High Capacity (2 Buses)"
+    },
+    {
+      id: "charummoodu",
+      location: "Charummoodu",
+      busCountLabel: "Special Bus",
+      boardingPoint: "Near Choice Hyper Market",
+      pickupTime: "9:00 AM",
+      destination: "SBCE Pattoor Campus",
+      highlight: "Choice Hyper Market"
+    },
+    {
+      id: "parajn",
+      location: "Para Jn",
+      busCountLabel: "Special Bus",
+      boardingPoint: "Para Junction (Para Jn)",
+      pickupTime: "9:00 AM",
+      destination: "SBCE Pattoor Campus",
+      highlight: "Para Junction"
+    }
+  ]
+};
+
 export const busRoutes = [
   {
     "busNo": 1,

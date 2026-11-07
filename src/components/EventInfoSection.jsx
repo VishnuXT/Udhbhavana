@@ -113,6 +113,26 @@ export function EventInfoSection({ siteConfig }) {
               <p style={{ fontSize: '0.875rem', color: '#CBD5E1', margin: 0, lineHeight: 1.5 }}>
                 Direct morning pick-up across Alappuzha, Kollam, and Pathanamthitta districts arriving at Pattoor campus by 8:25 AM. Check boarding points and pickup timings.
               </p>
+              <div style={{
+                marginTop: '0.65rem',
+                display: 'inline-flex',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                gap: '0.45rem',
+                fontSize: '0.8rem',
+                color: '#FEF08A',
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                padding: '0.35rem 0.65rem',
+                borderRadius: '8px',
+                border: '1px solid rgba(254, 240, 138, 0.25)'
+              }}>
+                <span style={{ fontWeight: 700, color: '#F4B928' }}>Additional Buses (09/11/26 @ 9:00 AM):</span>
+                <span>Pandalam (2 buses - KSRTC Stand)</span>
+                <span>•</span>
+                <span>Charummoodu (Choice Hyper Market)</span>
+                <span>•</span>
+                <span>Para Jn</span>
+              </div>
             </div>
           </div>
 

@@ -6,12 +6,14 @@ import {
   Navigation, 
   ChevronDown,
   ChevronUp,
-  X
+  X,
+  MapPin,
+  Clock
 } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { useSiteConfig } from '../hooks/useSiteConfig';
-import { busRoutes } from '../data/busData';
+import { busRoutes, additionalBusFacilities } from '../data/busData';
 import '../styles/bus-routes.css';
 
 export function BusRoutes() {
@@ -19,6 +21,16 @@ export function BusRoutes() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDistrict, setSelectedDistrict] = useState('ALL');
   const [selectedBusNo, setSelectedBusNo] = useState('ALL');
+  
+  // Special Event Transit accordion state:
+  // Starts collapsed on mobile (< 768px) so user doesn't have to scroll far, open on desktop
+  const [isSpecialOpen, setIsSpecialOpen] = useState(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      return false;
+    }
+    return true;
+  });
+
   // Default: all cards expanded so user immediately sees the complete schedule report!
   const [openBuses, setOpenBuses] = useState(() => {
     const all = {};
@@ -121,6 +133,133 @@ export function BusRoutes() {
 
       {/* Main Content Area */}
       <main className="container" style={{ paddingBottom: '3rem' }}>
+        {/* Additional Bus Facilities (09/11/26) Special Event Section (Accordion System) */}
+        {(() => {
+          const q = searchTerm.trim().toLowerCase();
+          const isSpecialMatch = q.length > 0 && (
+            'pandalam'.includes(q) || 
+            'charummoodu'.includes(q) || 
+            'para'.includes(q) || 
+            'additional'.includes(q) || 
+            'special'.includes(q)
+          );
+          const showSpecialBody = isSpecialOpen || isSpecialMatch;
+
+          return (
+            <section 
+              className={`bus-card bus-special-card-wrap ${showSpecialBody ? 'is-open' : ''}`} 
+              aria-label="Special Event Day Transport Facilities"
+            >
+              {/* Card Header (Accordion toggle matching bus routes style) */}
+              <div 
+                className="bus-card-header bus-special-header"
+                onClick={() => setIsSpecialOpen(prev => !prev)}
+                role="button"
+                tabIndex={0}
+                aria-expanded={showSpecialBody}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setIsSpecialOpen(prev => !prev);
+                  }
+                }}
+              >
+                <div className="bus-special-header-inner">
+                  <div className="bus-special-header-content">
+                    {/* Top Row: Meta Badges */}
+                    <div className="bus-special-meta-row">
+                      <span className="bus-special-event-badge">
+                        Special Event Transit
+                      </span>
+                      <span className="bus-card-district" style={{ backgroundColor: '#EFF6FF', color: '#1D4ED8', borderColor: '#DBEAFE' }}>
+                        09/11/26 Only
+                      </span>
+                      <span className="bus-departs-pill" style={{ backgroundColor: '#ECFDF5', color: '#065F46', borderColor: '#A7F3D0' }}>
+                        Pickup: <strong>9:00 AM</strong>
+                      </span>
+                    </div>
+
+                    {/* Route Title */}
+                    <h2 className="bus-route-title">
+                      {additionalBusFacilities.title}
+                    </h2>
+
+                    {/* Subline */}
+                    <div className="bus-card-subline">
+                      <span><strong>3 Special Services</strong>: Pandalam (2 buses), Charummoodu, Para Jn</span>
+                      <span className="bus-dot-sep">•</span>
+                      <span>Direct to <strong>SBCE Pattoor Campus</strong> (~9:25 AM)</span>
+                    </div>
+                  </div>
+
+                  {/* Dedicated Right-Aligned Prominent Chevron Column */}
+                  <div className="bus-special-chevron-col">
+                    <span className="bus-chevron-pill bus-chevron-pill-lg" aria-hidden="true">
+                      {showSpecialBody ? (
+                        <ChevronUp size={22} strokeWidth={2.5} className="bus-chevron-icon" />
+                      ) : (
+                        <ChevronDown size={22} strokeWidth={2.5} className="bus-chevron-icon" />
+                      )}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Accordion Body (Rendered when open) */}
+              {showSpecialBody && (
+                <div className="bus-special-body">
+                  <p className="bus-special-desc">
+                    {additionalBusFacilities.description}
+                  </p>
+
+                  <div className="bus-special-grid">
+                    {additionalBusFacilities.services.map((service) => (
+                      <div key={service.id} className="bus-special-item-card">
+                        <div className="bus-special-card-top">
+                          <div className="bus-special-loc-badge">
+                            <Bus size={16} />
+                            <span>{service.location}</span>
+                          </div>
+                          <span className={`bus-special-buses-badge ${service.busCountLabel.includes('2') ? 'badge-amber' : ''}`}>
+                            {service.busCountLabel}
+                          </span>
+                        </div>
+
+                        <div className="bus-special-boarding-info">
+                          <div className="bus-special-point-label">Boarding Point</div>
+                          <div className="bus-special-point-name">
+                            <MapPin size={14} className="bus-special-map-icon" />
+                            <strong>{service.boardingPoint}</strong>
+                          </div>
+                        </div>
+
+                        <div className="bus-special-card-bottom">
+                          <div className="bus-special-time-pill">
+                            <Clock size={13} />
+                            <span>Pickup: <strong>{service.pickupTime}</strong></span>
+                          </div>
+                          <span className="bus-special-direct-tag">Direct to Campus</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Destination Footer when open */}
+              {showSpecialBody && (
+                <div className="bus-card-footer">
+                  <span className="bus-dest-note">
+                    <Navigation size={13} style={{ color: '#059669', flexShrink: 0 }} />
+                    <span>Destination: <strong>SBCE Pattoor Campus (~9:25 AM Arrival)</strong></span>
+                  </span>
+                  <span className="bus-footer-stops-count">3 event-day boarding zones</span>
+                </div>
+              )}
+            </section>
+          );
+        })()}
+
         {/* Simple Search & Filter Bar */}
         <section className="bus-filter-bar" aria-label="Search and filter bus routes">
           {/* Search Input */}
@@ -283,9 +422,9 @@ export function BusRoutes() {
                         </span>
                         <span className="bus-chevron-pill" aria-hidden="true">
                           {open ? (
-                            <ChevronUp size={16} className="bus-chevron-icon" />
+                            <ChevronUp size={18} strokeWidth={2.2} className="bus-chevron-icon" />
                           ) : (
-                            <ChevronDown size={16} className="bus-chevron-icon" />
+                            <ChevronDown size={18} strokeWidth={2.2} className="bus-chevron-icon" />
                           )}
                         </span>
                       </div>
