@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, MapPin, ArrowRight, ArrowUpRight, Sparkles, ZoomIn } from 'lucide-react';
+import { Calendar, MapPin, ArrowRight, ArrowUpRight, Sparkles, ZoomIn, Clock } from 'lucide-react';
 import { PosterModal } from './PosterModal';
 
 export function HeroSection({ siteConfig }) {
@@ -56,6 +56,15 @@ export function HeroSection({ siteConfig }) {
               <span>🌿</span>
               <span>{siteConfig?.awarenessMessage || 'No to drugs, Yes to life'}</span>
             </div>
+
+            {/* Registration Deadline Notice on Home Screen */}
+            {canShowRegister && (
+              <div className="hero-registration-deadline-badge">
+                <span className="hero-deadline-pulse-dot" aria-hidden="true" />
+                <Clock size={14} className="hero-deadline-icon" aria-hidden="true" />
+                <span>Registration closes by <strong>12 PM</strong></span>
+              </div>
+            )}
 
             {/* Event Date & Venue meta */}
             <div className="hero-date-venue-meta">

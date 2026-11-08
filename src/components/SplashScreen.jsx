@@ -125,37 +125,20 @@ export function SplashScreen({
         {/* Striking Registration Deadline / Status Notice */}
         {siteConfig?.showRegisterButton !== false && (
           <div 
-            className={`splash-registration-notice ${siteConfig?.registrationOpen === false ? 'is-closed' : 'is-closing-soon'}`} 
+            className={`splash-registration-notice ${siteConfig?.registrationOpen === false ? 'is-closed' : ''}`} 
             role="status"
           >
             {/* Ambient light sweep */}
             <div className="splash-notice-shimmer" aria-hidden="true" />
-
-            {/* Leading urgent tag with live radar beacon */}
-            <div className="splash-notice-tag">
-              <span className="splash-radar-beacon" aria-hidden="true">
-                <span className="splash-beacon-wave" />
-                <span className="splash-beacon-core" />
-              </span>
-              <span className="splash-tag-text">
-                {siteConfig?.registrationOpen === false ? 'CLOSED' : 'CLOSING TODAY'}
-              </span>
-            </div>
-
-            {/* Message Body with Highlighted Time */}
-            <div className="splash-notice-text">
+            <span className="splash-notice-pulse-dot" aria-hidden="true" />
+            <Clock size={15} className="splash-notice-icon" aria-hidden="true" />
+            <span className="splash-notice-text">
               {siteConfig?.registrationOpen === false ? (
                 <span>Registrations are now <strong>CLOSED</strong></span>
               ) : (
-                <>
-                  <span>Registration closes by</span>
-                  <span className="splash-time-badge">
-                    <Clock size={12} className="splash-time-icon" aria-hidden="true" />
-                    <strong>12.00 PM Today</strong>
-                  </span>
-                </>
+                <span>Registration closes by <strong>12 PM</strong></span>
               )}
-            </div>
+            </span>
           </div>
         )}
 

@@ -95,7 +95,66 @@
   padding: 0.35rem 0.85rem;
   border-radius: var(--radius-full);
   border: 1px solid #C7EED8;
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+/* Striking Hero Registration Deadline Badge */
+.hero-registration-deadline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+  color: #92400E;
+  border: 1.5px solid #F59E0B;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.86rem;
+  font-weight: 600;
+  margin-bottom: var(--space-6);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.22);
+  animation: heroDeadlinePulse 2.5s ease-in-out infinite alternate;
+}
+
+.hero-registration-deadline-badge strong {
+  color: #B45309;
+  font-weight: 800;
+}
+
+.hero-deadline-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #EF4444;
+  box-shadow: 0 0 8px #EF4444;
+  animation: heroDotPulse 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.hero-deadline-icon {
+  color: #D97706;
+  flex-shrink: 0;
+}
+
+@keyframes heroDeadlinePulse {
+  0% {
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.18);
+    transform: translateY(0);
+  }
+  100% {
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.32);
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes heroDotPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.75);
+  }
 }
 
 .hero-date-venue-meta {
@@ -409,11 +468,38 @@
   box-shadow: 0 4px 14px rgba(40, 120, 208, 0.25);
 }
 
+.competitions-register-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-1);
+}
+
 .competitions-register-title {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-primary-navy);
-  margin-bottom: var(--space-1);
+  margin-bottom: 0;
+}
+
+.competitions-deadline-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  color: #92400E;
+  border: 1px solid #F59E0B;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.18);
+}
+
+.competitions-deadline-pill strong {
+  color: #78350F;
+  font-weight: 800;
 }
 
 .competitions-register-desc {
@@ -1198,6 +1284,10 @@
   }
 
   .hero-awareness-pill {
+    margin: 0 auto var(--space-3);
+  }
+
+  .hero-registration-deadline-badge {
     margin: 0 auto var(--space-5);
   }
 
@@ -1311,7 +1401,13 @@
   .hero-awareness-pill {
     font-size: 0.8rem;
     padding: 0.3rem 0.75rem;
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-registration-deadline-badge {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.85rem;
+    margin: 0 auto var(--space-4);
   }
 
   .hero-date-venue-meta {

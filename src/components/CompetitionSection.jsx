@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trophy, ArrowUpRight, ClipboardCheck, Lock } from 'lucide-react';
+import { Trophy, ArrowUpRight, ClipboardCheck, Lock, Clock } from 'lucide-react';
 import { CompetitionCard } from './CompetitionCard';
 import { CompetitionRules } from './CompetitionRules';
 
@@ -54,9 +54,17 @@ export function CompetitionSection({ competitions = [], siteConfig }) {
               {!isRegistrationOpen ? <Lock size={28} /> : <ClipboardCheck size={28} />}
             </div>
             <div className="competitions-register-text">
-              <h3 className="competitions-register-title">
-                {!isRegistrationOpen ? 'Registrations Closed' : 'Single Registration for All Competitions'}
-              </h3>
+              <div className="competitions-register-title-row">
+                <h3 className="competitions-register-title">
+                  {!isRegistrationOpen ? 'Registrations Closed' : 'Single Registration for All Competitions'}
+                </h3>
+                {isRegistrationOpen && showRegisterBtn && (
+                  <span className="competitions-deadline-pill">
+                    <Clock size={13} />
+                    <span>Registration closes by <strong>12 PM</strong></span>
+                  </span>
+                )}
+              </div>
               <p className="competitions-register-desc">
                 {!isRegistrationOpen
                   ? (siteConfig?.registrationClosedMessage || 'Registrations for Udhbhavana 2026 are now closed. Thank you for the overwhelming response!')
