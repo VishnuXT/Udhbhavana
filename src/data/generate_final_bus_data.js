@@ -327,13 +327,13 @@ const busDefs = [
     hikeRateType: "10% & 15% Increase",
     stops: [
       { stopNo: 1, name: "Pathanapuram", time: "7.20 a.m" },
-      { stopNo: 2, name: "Kallumkadavu", time: "7.30 a.m" },
-      { stopNo: 3, name: "Puthuval", time: "7.35 a.m" },
-      { stopNo: 4, name: "Elamannoor H.S", time: "7.45 a.m" },
-      { stopNo: 5, name: "Pattazhi Mukku (PP)", time: "7.55 a.m" },
-      { stopNo: 6, name: "Ezhamkulam", time: "7.40 a.m" },
-      { stopNo: 7, name: "Parakode", time: "7.45 a.m" },
-      { stopNo: 8, name: "Kottamughal", time: "7.48 a.m" }
+      { stopNo: 2, name: "Kallumkadavu", time: "7.25 a.m" },
+      { stopNo: 3, name: "Puthuval", time: "7.30 a.m" },
+      { stopNo: 4, name: "Elamannoor H.S", time: "7.35 a.m" },
+      { stopNo: 5, name: "Pattazhi Mukku (PP)", time: "7.40 a.m" },
+      { stopNo: 6, name: "Ezhamkulam", time: "7.45 a.m" },
+      { stopNo: 7, name: "Parakode", time: "7.48 a.m" },
+      { stopNo: 8, name: "Kottamughal", time: "7.50 a.m" }
     ]
   },
   {

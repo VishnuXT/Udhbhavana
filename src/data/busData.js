@@ -1376,7 +1376,7 @@ export const busRoutes = [
       {
         "stopNo": 2,
         "name": "Kallumkadavu",
-        "time": "7.30 a.m",
+        "time": "7.25 a.m",
         "fare": {
           "existingDay": 30200,
           "hike1Day": 33220,
@@ -1390,7 +1390,7 @@ export const busRoutes = [
       {
         "stopNo": 3,
         "name": "Puthuval",
-        "time": "7.35 a.m",
+        "time": "7.30 a.m",
         "fare": {
           "existingDay": 28750,
           "hike1Day": 31630,
@@ -1404,7 +1404,7 @@ export const busRoutes = [
       {
         "stopNo": 4,
         "name": "Elamannoor H.S",
-        "time": "7.45 a.m",
+        "time": "7.35 a.m",
         "fare": {
           "existingDay": 28040,
           "hike1Day": 30850,
@@ -1418,7 +1418,7 @@ export const busRoutes = [
       {
         "stopNo": 5,
         "name": "Pattazhi Mukku (PP)",
-        "time": "7.55 a.m",
+        "time": "7.40 a.m",
         "fare": {
           "existingDay": 25880,
           "hike1Day": 28470,
@@ -1432,7 +1432,7 @@ export const busRoutes = [
       {
         "stopNo": 6,
         "name": "Ezhamkulam",
-        "time": "7.40 a.m",
+        "time": "7.45 a.m",
         "fare": {
           "existingDay": 24440,
           "hike1Day": 26890,
@@ -1446,7 +1446,7 @@ export const busRoutes = [
       {
         "stopNo": 7,
         "name": "Parakode",
-        "time": "7.45 a.m",
+        "time": "7.48 a.m",
         "fare": {
           "existingDay": 21570,
           "hike1Day": 23730,
@@ -1460,7 +1460,7 @@ export const busRoutes = [
       {
         "stopNo": 8,
         "name": "Kottamughal",
-        "time": "7.48 a.m",
+        "time": "7.50 a.m",
         "fare": {
           "existingDay": 20850,
           "hike1Day": 22940,
@@ -4060,7 +4060,7 @@ export const allFares = [
   {
     "name": "Kallumkadavu",
     "busNo": null,
-    "time": "7.30 a.m",
+    "time": "7.25 a.m",
     "existingDay": 30200,
     "hike1Day": 33220,
     "hike2Day": 34730,
@@ -4072,7 +4072,7 @@ export const allFares = [
   {
     "name": "Puthuval",
     "busNo": null,
-    "time": "7.35 a.m",
+    "time": "7.30 a.m",
     "existingDay": 28750,
     "hike1Day": 31630,
     "hike2Day": 33070,
@@ -4084,7 +4084,7 @@ export const allFares = [
   {
     "name": "Elamannoor H.S",
     "busNo": null,
-    "time": "7.45 a.m",
+    "time": "7.35 a.m",
     "existingDay": 28040,
     "hike1Day": 30850,
     "hike2Day": 32250,
@@ -4096,7 +4096,7 @@ export const allFares = [
   {
     "name": "Pattazhi Mukku (PP)",
     "busNo": null,
-    "time": "7.55 a.m",
+    "time": "7.40 a.m",
     "existingDay": 25880,
     "hike1Day": 28470,
     "hike2Day": 29770,
@@ -4108,7 +4108,7 @@ export const allFares = [
   {
     "name": "Ezhamkulam",
     "busNo": null,
-    "time": "7.40 a.m",
+    "time": "7.45 a.m",
     "existingDay": 24440,
     "hike1Day": 26890,
     "hike2Day": 28110,
@@ -4120,7 +4120,7 @@ export const allFares = [
   {
     "name": "Parakode",
     "busNo": null,
-    "time": "7.45 a.m",
+    "time": "7.48 a.m",
     "existingDay": 21570,
     "hike1Day": 23730,
     "hike2Day": 24810,
@@ -4132,7 +4132,7 @@ export const allFares = [
   {
     "name": "Kottamughal",
     "busNo": null,
-    "time": "7.48 a.m",
+    "time": "7.50 a.m",
     "existingDay": 20850,
     "hike1Day": 22940,
     "hike2Day": 23980,
