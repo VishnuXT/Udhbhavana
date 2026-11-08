@@ -175,24 +175,19 @@ const busDefs = [
   },
   {
     busNo: 4,
-    routeName: "Chettikulangara – Mannar – Mavelikara – Vettiyar",
+    routeName: "Chettikulangara – Thattarambalam – Mavelikara",
     startPoint: "Chettikulangara (Bhagavathippadi)",
     destination: "SBCE Pattoor",
     departureTime: "7:10 AM",
     isAC: false,
     district: "Alappuzha",
     hikeRateType: "10% & 15% Increase",
+    routeNote: "Route Update: Diverts from Thattarambalam directly towards Mavelikkara. Stop nos. 4 to 10 (Chennithala, Mannar, Kallummodu, Cherukole, Pynummoodu, Vettiyar) are now covered by Bus No. 23.",
     stops: [
       { stopNo: 1, name: "Bhagavathippadi", time: "7.10 a.m" },
       { stopNo: 2, name: "Chettikulangara", time: "7.15 a.m" },
-      { stopNo: 3, name: "Thattarampalam", time: "7.22 a.m" },
-      { stopNo: 4, name: "Chennithala Temple", time: "7.30 a.m" },
-      { stopNo: 5, name: "Koickal Jn (Mannar)", time: "7.40 a.m" },
-      { stopNo: 6, name: "Kallummodu", time: "7.50 a.m" },
-      { stopNo: 7, name: "Cherukole", time: "7.55 a.m" },
-      { stopNo: 8, name: "Mavelikara (Puthiyakavu Jn)", time: "8.00 a.m" },
-      { stopNo: 9, name: "Pynummoodu", time: "8.10 a.m" },
-      { stopNo: 10, name: "Vettiyar", time: "8.20 a.m" }
+      { stopNo: 3, name: "Thattarambalam", time: "7.22 a.m" },
+      { stopNo: 4, name: "Mavelikara (Puthiyakavu Jn)", time: "7.30 a.m" }
     ]
   },
   {
@@ -568,13 +563,14 @@ const busDefs = [
   },
   {
     busNo: 23,
-    routeName: "Muttom via Chennithala – Mavelikara – Mankankuzhy",
+    routeName: "Muttom via Chennithala – Mannar – Mavelikara – Vettiyar – Mankankuzhy",
     startPoint: "Muttom (Panachamud Jn)",
     destination: "SBCE Pattoor",
     departureTime: "7:35 AM",
     isAC: false,
     district: "Alappuzha",
     hikeRateType: "10% & 15% Increase",
+    routeNote: "Route Update: Now covers Chennithala, Mannar, Kallummoodu, Cherukole, Mavelikara, Pynummoodu & Vettiyar (previously covered by Bus 04).",
     stops: [
       { stopNo: 1, name: "Muttom via Chennithala", time: "7.35 a.m" },
       { stopNo: 2, name: "Evoor (Panachamud jn)", time: "7.35 a.m" },
@@ -582,15 +578,17 @@ const busDefs = [
       { stopNo: 4, name: "Muttom Petrol Pump", time: "7.39 a.m" },
       { stopNo: 5, name: "Puthusseri Ambalam", time: "7.43 a.m" },
       { stopNo: 6, name: "Thattarambalam", time: "7.45 a.m" },
-      { stopNo: 7, name: "Chennithala Ambalajunction", time: "7.49 a.m" },
-      { stopNo: 8, name: "Store Junction", time: "7.54 a.m" },
+      { stopNo: 7, name: "Chennithala Ambalajunction (Chennithala Temple)", time: "7.49 a.m" },
+      { stopNo: 8, name: "Store Junction / Koickal Jn (Mannar)", time: "7.54 a.m" },
       { stopNo: 9, name: "Jawahar Navodaya", time: "7.56 a.m" },
       { stopNo: 10, name: "Kallummoodu Jn", time: "7.58 a.m" },
-      { stopNo: 11, name: "Puthiyakavu (Mavelikara)", time: "8.00 a.m" },
-      { stopNo: 12, name: "Mavelikara Overbridge", time: "8.10 a.m" },
-      { stopNo: 13, name: "Thazhkkara JN", time: "8.15 a.m" },
-      { stopNo: 14, name: "Pynumud", time: "8.20 a.m" },
-      { stopNo: 15, name: "Mankankuzhy", time: "8.30 a.m" }
+      { stopNo: 11, name: "Cherukole", time: "7.59 a.m" },
+      { stopNo: 12, name: "Puthiyakavu (Mavelikara)", time: "8.00 a.m" },
+      { stopNo: 13, name: "Mavelikara Overbridge", time: "8.10 a.m" },
+      { stopNo: 14, name: "Thazhkkara JN", time: "8.15 a.m" },
+      { stopNo: 15, name: "Pynummoodu", time: "8.20 a.m" },
+      { stopNo: 16, name: "Vettiyar", time: "8.25 a.m" },
+      { stopNo: 17, name: "Mankankuzhy", time: "8.30 a.m" }
     ]
   }
 ];

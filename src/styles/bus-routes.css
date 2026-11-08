@@ -576,6 +576,28 @@
   font-weight: bold;
 }
 
+.bus-card-route-note {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.65rem;
+  border-radius: 6px;
+  background-color: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #FDE68A;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  font-weight: 500;
+  text-align: left;
+}
+
+.bus-route-note-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #D97706;
+}
+
 /* Stops Sequence (Schedule Report Body) */
 .bus-stops-wrapper {
   padding: 0.75rem 1.15rem 1rem;

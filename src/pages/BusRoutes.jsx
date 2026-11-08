@@ -8,7 +8,8 @@ import {
   ChevronUp,
   X,
   MapPin,
-  Clock
+  Clock,
+  Info
 } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
@@ -65,8 +66,9 @@ export function BusRoutes() {
       const matchRoute = bus.routeName.toLowerCase().includes(q);
       const matchStart = bus.startPoint.toLowerCase().includes(q);
       const matchStop = bus.stops.some(st => st.name.toLowerCase().includes(q));
+      const matchNote = bus.routeNote ? bus.routeNote.toLowerCase().includes(q) : false;
 
-      return matchBusNo || matchRoute || matchStart || matchStop;
+      return matchBusNo || matchRoute || matchStart || matchStop || matchNote;
     });
   }, [searchTerm, selectedDistrict, selectedBusNo]);
 
@@ -441,6 +443,14 @@ export function BusRoutes() {
                       <span className="bus-dot-sep">•</span>
                       <span>Arrives SBCE Pattoor <strong>~8:25 AM</strong></span>
                     </div>
+
+                    {/* Route Note Alert (for diverted or updated routes) */}
+                    {bus.routeNote && (
+                      <div className="bus-card-route-note">
+                        <Info size={14} className="bus-route-note-icon" />
+                        <span>{bus.routeNote}</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Stops Sequence (Schedule Report Body) */}

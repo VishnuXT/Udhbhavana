@@ -462,13 +462,14 @@ export const busRoutes = [
   },
   {
     "busNo": 4,
-    "routeName": "Chettikulangara – Mannar – Mavelikara – Vettiyar",
+    "routeName": "Chettikulangara – Thattarambalam – Mavelikara",
     "startPoint": "Chettikulangara (Bhagavathippadi)",
     "destination": "SBCE Pattoor",
     "departureTime": "7:10 AM",
     "isAC": false,
     "district": "Alappuzha",
     "hikeRateType": "10% & 15% Increase",
+    "routeNote": "Route Update: Diverts from Thattarambalam directly towards Mavelikkara. Stop nos. 4 to 10 (Chennithala, Mannar, Kallummodu, Cherukole, Pynummoodu, Vettiyar) are now covered by Bus No. 23.",
     "stops": [
       {
         "stopNo": 1,
@@ -514,64 +515,8 @@ export const busRoutes = [
       },
       {
         "stopNo": 4,
-        "name": "Chennithala Temple",
-        "time": "7.30 a.m",
-        "fare": {
-          "existingDay": 23010,
-          "hike1Day": 25320,
-          "hike2Day": 26470,
-          "existingHostel": 3460,
-          "hike1Hostel": 3810,
-          "hike2Hostel": 3980,
-          "rateType": "standard"
-        }
-      },
-      {
-        "stopNo": 5,
-        "name": "Koickal Jn (Mannar)",
-        "time": "7.40 a.m",
-        "fare": {
-          "existingDay": 25880,
-          "hike1Day": 28470,
-          "hike2Day": 29770,
-          "existingHostel": 3890,
-          "hike1Hostel": 4280,
-          "hike2Hostel": 4480,
-          "rateType": "standard"
-        }
-      },
-      {
-        "stopNo": 6,
-        "name": "Kallummodu",
-        "time": "7.50 a.m",
-        "fare": {
-          "existingDay": null,
-          "hike1Day": null,
-          "hike2Day": 24000,
-          "existingHostel": null,
-          "hike1Hostel": null,
-          "hike2Hostel": null,
-          "rateType": "standard"
-        }
-      },
-      {
-        "stopNo": 7,
-        "name": "Cherukole",
-        "time": "7.55 a.m",
-        "fare": {
-          "existingDay": null,
-          "hike1Day": null,
-          "hike2Day": 22750,
-          "existingHostel": null,
-          "hike1Hostel": null,
-          "hike2Hostel": null,
-          "rateType": "standard"
-        }
-      },
-      {
-        "stopNo": 8,
         "name": "Mavelikara (Puthiyakavu Jn)",
-        "time": "8.00 a.m",
+        "time": "7.30 a.m",
         "fare": {
           "existingDay": 18690,
           "hike1Day": 20560,
@@ -579,34 +524,6 @@ export const busRoutes = [
           "existingHostel": 2810,
           "hike1Hostel": 3100,
           "hike2Hostel": 3240,
-          "rateType": "standard"
-        }
-      },
-      {
-        "stopNo": 9,
-        "name": "Pynummoodu",
-        "time": "8.10 a.m",
-        "fare": {
-          "existingDay": 17260,
-          "hike1Day": 18990,
-          "hike2Day": 19850,
-          "existingHostel": 2600,
-          "hike1Hostel": 2860,
-          "hike2Hostel": 2990,
-          "rateType": "standard"
-        }
-      },
-      {
-        "stopNo": 10,
-        "name": "Vettiyar",
-        "time": "8.20 a.m",
-        "fare": {
-          "existingDay": 14380,
-          "hike1Day": 15820,
-          "hike2Day": 16540,
-          "existingHostel": 2160,
-          "hike1Hostel": 2380,
-          "hike2Hostel": 2490,
           "rateType": "standard"
         }
       }
@@ -2968,13 +2885,14 @@ export const busRoutes = [
   },
   {
     "busNo": 23,
-    "routeName": "Muttom via Chennithala – Mavelikara – Mankankuzhy",
+    "routeName": "Muttom via Chennithala – Mannar – Mavelikara – Vettiyar – Mankankuzhy",
     "startPoint": "Muttom (Panachamud Jn)",
     "destination": "SBCE Pattoor",
     "departureTime": "7:35 AM",
     "isAC": false,
     "district": "Alappuzha",
     "hikeRateType": "10% & 15% Increase",
+    "routeNote": "Route Update: Now covers Chennithala, Mannar, Kallummoodu, Cherukole, Mavelikara, Pynummoodu & Vettiyar (previously covered by Bus 04).",
     "stops": [
       {
         "stopNo": 1,
@@ -3022,15 +2940,31 @@ export const busRoutes = [
       },
       {
         "stopNo": 7,
-        "name": "Chennithala Ambalajunction",
+        "name": "Chennithala Ambalajunction (Chennithala Temple)",
         "time": "7.49 a.m",
-        "fare": null
+        "fare": {
+          "existingDay": 23010,
+          "hike1Day": 25320,
+          "hike2Day": 26470,
+          "existingHostel": 3460,
+          "hike1Hostel": 3810,
+          "hike2Hostel": 3980,
+          "rateType": "standard"
+        }
       },
       {
         "stopNo": 8,
-        "name": "Store Junction",
+        "name": "Store Junction / Koickal Jn (Mannar)",
         "time": "7.54 a.m",
-        "fare": null
+        "fare": {
+          "existingDay": 25880,
+          "hike1Day": 28470,
+          "hike2Day": 29770,
+          "existingHostel": 3890,
+          "hike1Hostel": 4280,
+          "hike2Hostel": 4480,
+          "rateType": "standard"
+        }
       },
       {
         "stopNo": 9,
@@ -3042,10 +2976,32 @@ export const busRoutes = [
         "stopNo": 10,
         "name": "Kallummoodu Jn",
         "time": "7.58 a.m",
-        "fare": null
+        "fare": {
+          "existingDay": null,
+          "hike1Day": null,
+          "hike2Day": 24000,
+          "existingHostel": null,
+          "hike1Hostel": null,
+          "hike2Hostel": null,
+          "rateType": "standard"
+        }
       },
       {
         "stopNo": 11,
+        "name": "Cherukole",
+        "time": "7.59 a.m",
+        "fare": {
+          "existingDay": null,
+          "hike1Day": null,
+          "hike2Day": 22750,
+          "existingHostel": null,
+          "hike1Hostel": null,
+          "hike2Hostel": null,
+          "rateType": "standard"
+        }
+      },
+      {
+        "stopNo": 12,
         "name": "Puthiyakavu (Mavelikara)",
         "time": "8.00 a.m",
         "fare": {
@@ -3059,7 +3015,7 @@ export const busRoutes = [
         }
       },
       {
-        "stopNo": 12,
+        "stopNo": 13,
         "name": "Mavelikara Overbridge",
         "time": "8.10 a.m",
         "fare": {
@@ -3073,19 +3029,41 @@ export const busRoutes = [
         }
       },
       {
-        "stopNo": 13,
+        "stopNo": 14,
         "name": "Thazhkkara JN",
         "time": "8.15 a.m",
         "fare": null
       },
       {
-        "stopNo": 14,
-        "name": "Pynumud",
+        "stopNo": 15,
+        "name": "Pynummoodu",
         "time": "8.20 a.m",
-        "fare": null
+        "fare": {
+          "existingDay": 17260,
+          "hike1Day": 18990,
+          "hike2Day": 19850,
+          "existingHostel": 2600,
+          "hike1Hostel": 2860,
+          "hike2Hostel": 2990,
+          "rateType": "standard"
+        }
       },
       {
-        "stopNo": 15,
+        "stopNo": 16,
+        "name": "Vettiyar",
+        "time": "8.25 a.m",
+        "fare": {
+          "existingDay": 14380,
+          "hike1Day": 15820,
+          "hike2Day": 16540,
+          "existingHostel": 2160,
+          "hike1Hostel": 2380,
+          "hike2Hostel": 2490,
+          "rateType": "standard"
+        }
+      },
+      {
+        "stopNo": 17,
         "name": "Mankankuzhy",
         "time": "8.30 a.m",
         "fare": null
