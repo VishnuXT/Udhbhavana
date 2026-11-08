@@ -71,7 +71,10 @@ export function Navbar({ siteConfig }) {
     }
   };
 
+  const isRegistrationOpen = siteConfig?.registrationOpen !== false;
+  const showRegisterBtn = siteConfig?.showRegisterButton !== false;
   const hasRegisterUrl = Boolean(siteConfig?.registrationUrl && siteConfig.registrationUrl.trim() !== '');
+  const canShowRegister = hasRegisterUrl && showRegisterBtn && isRegistrationOpen;
 
   return (
     <header className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
@@ -180,7 +183,7 @@ export function Navbar({ siteConfig }) {
             <Bus size={18} />
           </Link>
 
-          {hasRegisterUrl && (
+          {canShowRegister && (
             <a 
               href={siteConfig.registrationUrl} 
               target="_blank" 
@@ -274,7 +277,7 @@ export function Navbar({ siteConfig }) {
           )}
 
           <div className="mobile-menu-actions">
-            {hasRegisterUrl && (
+            {canShowRegister && (
               <a 
                 href={siteConfig.registrationUrl} 
                 target="_blank" 

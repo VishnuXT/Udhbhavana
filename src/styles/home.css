@@ -365,6 +365,20 @@
   overflow: hidden;
 }
 
+.competitions-register-banner.banner-closed {
+  background: linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%);
+  border-color: #E2E8F0;
+}
+
+.competitions-register-banner.banner-closed::before {
+  background: linear-gradient(180deg, #94A3B8 0%, #64748B 100%);
+}
+
+.competitions-register-banner.banner-closed .competitions-register-icon {
+  background: linear-gradient(135deg, #64748B 0%, #475569 100%);
+  box-shadow: 0 4px 14px rgba(71, 85, 105, 0.2);
+}
+
 .competitions-register-banner::before {
   content: '';
   position: absolute;

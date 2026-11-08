@@ -370,6 +370,51 @@ export function WebsiteContentEditor({ siteConfig, onSave, onNavigateTab }) {
                   placeholder="https://forms.google.com/..."
                 />
               </div>
+
+              <div className="form-grid-2">
+                <div className="form-group">
+                  <label className="form-label">Registration Acceptance Status</label>
+                  <select
+                    className="form-select"
+                    value={formData?.registrationOpen !== false ? 'open' : 'closed'}
+                    onChange={(e) => handleChange('registrationOpen', e.target.value === 'open')}
+                  >
+                    <option value="open">🟢 Registrations Open (Active)</option>
+                    <option value="closed">🔴 Registrations Closed</option>
+                  </select>
+                  <span className="form-hint">Closes registration and informs visitors that applications have ended.</span>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Registration Buttons Display</label>
+                  <select
+                    className="form-select"
+                    value={formData?.showRegisterButton !== false ? 'show' : 'hide'}
+                    onChange={(e) => handleChange('showRegisterButton', e.target.value === 'show')}
+                  >
+                    <option value="show">👁️ Show Registration Buttons</option>
+                    <option value="hide">🚫 Remove / Hide Registration Buttons</option>
+                  </select>
+                  <span className="form-hint">Completely removes CTA buttons from Navbar, Hero, and Competitions banner.</span>
+                </div>
+              </div>
+
+              {formData?.registrationOpen === false && (
+                <div className="form-group">
+                  <label className="form-label" htmlFor="registrationClosedMessage">
+                    Registration Closed Notice
+                    <span className="form-hint">(Displayed to visitors when registrations are closed)</span>
+                  </label>
+                  <input
+                    id="registrationClosedMessage"
+                    type="text"
+                    className="form-input"
+                    value={formData?.registrationClosedMessage || ''}
+                    onChange={(e) => handleChange('registrationClosedMessage', e.target.value)}
+                    placeholder="Registrations for Udhbhavana 2026 are now closed. Thank you for the overwhelming response!"
+                  />
+                </div>
+              )}
             </div>
 
             <div className="form-grid-2">

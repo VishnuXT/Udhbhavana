@@ -18,7 +18,10 @@ export function HeroSection({ siteConfig }) {
 
   const posterImg = siteConfig?.posterUrl || '/poster.jpg';
   const logoImg = siteConfig?.logoUrl || '/logo.png';
+  const isRegistrationOpen = siteConfig?.registrationOpen !== false;
+  const showRegisterBtn = siteConfig?.showRegisterButton !== false;
   const hasRegisterUrl = Boolean(siteConfig?.registrationUrl && siteConfig.registrationUrl.trim() !== '');
+  const canShowRegister = hasRegisterUrl && showRegisterBtn && isRegistrationOpen;
 
   return (
     <section id="hero" className="hero-section">
@@ -80,7 +83,7 @@ export function HeroSection({ siteConfig }) {
                 {siteConfig?.heroExploreBtnText || 'Explore Competitions'}
                 <ArrowRight size={18} />
               </button>
-              {hasRegisterUrl && (
+              {canShowRegister && (
                 <a 
                   href={siteConfig.registrationUrl} 
                   target="_blank" 

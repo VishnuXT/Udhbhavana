@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trophy, ArrowUpRight, ClipboardCheck } from 'lucide-react';
+import { Trophy, ArrowUpRight, ClipboardCheck, Lock } from 'lucide-react';
 import { CompetitionCard } from './CompetitionCard';
 import { CompetitionRules } from './CompetitionRules';
 
@@ -9,6 +9,9 @@ export function CompetitionSection({ competitions = [], siteConfig }) {
   const publishedCompetitions = competitions.filter((c) => c.published !== false);
 
   if (publishedCompetitions.length === 0) return null;
+
+  const isRegistrationOpen = siteConfig?.registrationOpen !== false;
+  const showRegisterBtn = siteConfig?.showRegisterButton !== false;
 
   const registrationUrl = (siteConfig?.registrationUrl && siteConfig.registrationUrl.trim() !== '')
     ? siteConfig.registrationUrl.trim()
@@ -45,32 +48,42 @@ export function CompetitionSection({ competitions = [], siteConfig }) {
         </div>
 
         {/* Unified / Single Registration Callout below the cards */}
-        <div className="competitions-register-banner">
+        <div className={`competitions-register-banner ${!isRegistrationOpen ? 'banner-closed' : ''}`}>
           <div className="competitions-register-content">
             <div className="competitions-register-icon">
-              <ClipboardCheck size={28} />
+              {!isRegistrationOpen ? <Lock size={28} /> : <ClipboardCheck size={28} />}
             </div>
             <div className="competitions-register-text">
               <h3 className="competitions-register-title">
-                Single Registration for All Competitions
+                {!isRegistrationOpen ? 'Registrations Closed' : 'Single Registration for All Competitions'}
               </h3>
               <p className="competitions-register-desc">
-                We use a single common registration form for all events. Choose your desired competitions and complete your registration easily in one place.
+                {!isRegistrationOpen
+                  ? (siteConfig?.registrationClosedMessage || 'Registrations for Udhbhavana 2026 are now closed. Thank you for the overwhelming response!')
+                  : 'We use a single common registration form for all events. Choose your desired competitions and complete your registration easily in one place.'}
               </p>
             </div>
           </div>
-          <div className="competitions-register-action">
-            <a 
-              href={registrationUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="btn btn-primary btn-lg"
-              id="competition-section-register-btn"
-            >
-              {siteConfig?.heroRegisterBtnText || 'Register for Competitions'}
-              <ArrowUpRight size={18} />
-            </a>
-          </div>
+          {showRegisterBtn && (
+            <div className="competitions-register-action">
+              {!isRegistrationOpen ? (
+                <span className="btn btn-secondary btn-lg" style={{ opacity: 0.8, cursor: 'not-allowed', backgroundColor: '#E2E8F0', borderColor: '#CBD5E1', color: '#64748B' }}>
+                  Registrations Closed
+                </span>
+              ) : (
+                <a 
+                  href={registrationUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn btn-primary btn-lg"
+                  id="competition-section-register-btn"
+                >
+                  {siteConfig?.heroRegisterBtnText || 'Register for Competitions'}
+                  <ArrowUpRight size={18} />
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>

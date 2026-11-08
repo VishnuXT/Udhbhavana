@@ -6,7 +6,10 @@ import {
   Globe, 
   Image as ImageIcon, 
   CheckCircle,
-  AlertCircle
+  AlertCircle,
+  Sliders,
+  UserCheck,
+  UserX
 } from 'lucide-react';
 import { isFirebaseConfigured } from '../services/firebase';
 
@@ -77,6 +80,20 @@ export function OverviewPanel({ siteConfig, competitions = [], announcements = [
             <Globe size={24} />
           </div>
         </div>
+
+        <div className="stat-card">
+          <div className="stat-info">
+            <span>Registrations</span>
+            <h3 style={{ fontSize: '1.25rem', color: (siteConfig?.registrationOpen !== false && siteConfig?.showRegisterButton !== false) ? '#24A36B' : '#E11D48' }}>
+              {siteConfig?.registrationOpen === false 
+                ? 'Closed' 
+                : (siteConfig?.showRegisterButton === false ? 'Buttons Removed' : 'Open')}
+            </h3>
+          </div>
+          <div className={`stat-icon ${(siteConfig?.registrationOpen !== false && siteConfig?.showRegisterButton !== false) ? 'icon-green' : 'icon-yellow'}`}>
+            {siteConfig?.registrationOpen === false ? <UserX size={24} /> : <UserCheck size={24} />}
+          </div>
+        </div>
       </div>
 
       {/* Quick Actions */}
@@ -117,6 +134,15 @@ export function OverviewPanel({ siteConfig, competitions = [], announcements = [
           >
             <ImageIcon size={28} />
             <span>Update Logo & Poster</span>
+          </button>
+
+          <button 
+            type="button" 
+            className="quick-action-btn"
+            onClick={() => setActiveTab('settings')}
+          >
+            <Sliders size={28} />
+            <span>Registration & Live Settings</span>
           </button>
         </div>
       </div>
