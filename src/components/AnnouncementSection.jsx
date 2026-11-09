@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bell, Info } from 'lucide-react';
+import { Bell, Info, FileText, ArrowUpRight } from 'lucide-react';
 
 export function AnnouncementSection({ announcements = [], siteConfig }) {
   if (siteConfig?.sectionVisibility?.announcements === false) return null;
@@ -39,6 +39,21 @@ export function AnnouncementSection({ announcements = [], siteConfig }) {
                 <div className="announcement-content">
                   <h3 className="announcement-title">{ann.title}</h3>
                   <p className="announcement-msg">{ann.message}</p>
+                  {ann.pdfUrl && (
+                    <div style={{ marginTop: '0.75rem' }}>
+                      <a 
+                        href={ann.pdfUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="btn btn-secondary btn-sm"
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none' }}
+                      >
+                        <FileText size={14} />
+                        <span>View Document (PDF)</span>
+                        <ArrowUpRight size={13} />
+                      </a>
+                    </div>
+                  )}
                   {ann.imageUrl && (
                     <div style={{ marginTop: '0.75rem', maxWidth: '300px' }}>
                       <img 

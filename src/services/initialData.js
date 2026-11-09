@@ -222,6 +222,16 @@ export const initialCompetitions = [
 
 export const initialAnnouncements = [
   {
+    id: "ann-quiz-results",
+    title: "Quiz Preliminary Examination Results Announced!",
+    message: "The official scorecards and qualified chest numbers for Round I & Round II of the Quiz Preliminary Examination are now published. Tap the Quiz Preliminary Result button on the home screen or open the official scorecard PDF directly.",
+    pdfUrl: "/quiz-preliminary-result.pdf",
+    published: true,
+    publishedAt: "2026-11-09",
+    expiresAt: "",
+    displayOrder: 1
+  },
+  {
     id: "ann-1",
     title: "Udhbhavana Portal Officially Launched!",
     message: "Welcome to the official web portal for Udhbhavana. Registration links and detailed schedules for all 5 competitions are now available.",
@@ -229,6 +239,6 @@ export const initialAnnouncements = [
     published: true,
     publishedAt: "2026-10-18",
     expiresAt: "",
-    displayOrder: 1
+    displayOrder: 2
   }
 ];

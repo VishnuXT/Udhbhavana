@@ -184,6 +184,154 @@
   gap: var(--space-4);
 }
 
+/* Catchy Quiz Preliminary Result Button on Homescreen */
+.btn-catchy-quiz {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.45rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FFFFFF !important;
+  background: linear-gradient(135deg, #0F254E 0%, #173873 40%, #1E4E9E 100%);
+  border: 2px solid #F59E0B;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35), 0 0 0 1px rgba(245, 158, 11, 0.25);
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.01em;
+  z-index: 1;
+}
+
+.btn-catchy-quiz:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: linear-gradient(135deg, #0B1C3B 0%, #153268 40%, #1A468E 100%);
+  border-color: #FBBF24;
+  box-shadow: 0 8px 28px rgba(245, 158, 11, 0.5), 0 0 18px rgba(251, 191, 36, 0.4);
+  color: #FFFFFF !important;
+}
+
+.btn-catchy-quiz:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* Pulsing "OUT NOW" badge */
+.quiz-btn-pulse-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(220, 38, 38, 0.45) 100%);
+  color: #FEE2E2;
+  border: 1px solid rgba(239, 68, 68, 0.65);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.quiz-btn-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #EF4444;
+  box-shadow: 0 0 8px #EF4444;
+  animation: heroDotPulse 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Golden Trophy Icon */
+.quiz-btn-trophy {
+  color: #FCD34D;
+  filter: drop-shadow(0 0 6px rgba(252, 211, 77, 0.7));
+  flex-shrink: 0;
+  animation: quizTrophyFloat 3s ease-in-out infinite alternate;
+}
+
+@keyframes quizTrophyFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-1.5px) rotate(-3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+.quiz-btn-title {
+  color: #FFFFFF;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* PDF chip */
+.quiz-btn-pdf-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(254, 243, 199, 0.18);
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  color: #FDE68A;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.18rem 0.45rem;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* Arrow that tilts and slides on hover */
+.quiz-btn-arrow {
+  color: #FCD34D;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-catchy-quiz:hover .quiz-btn-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* Shimmer light sweep across the button */
+.quiz-btn-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0) 70%,
+    transparent 100%
+  );
+  transform: translateX(-150%) skewX(-20deg);
+  animation: quizBtnShimmer 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes quizBtnShimmer {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  40% { transform: translateX(150%) skewX(-20deg); }
+  100% { transform: translateX(150%) skewX(-20deg); }
+}
+
+@media (max-width: 480px) {
+  .btn-catchy-quiz {
+    padding: 0.75rem 1rem;
+    font-size: 0.92rem;
+    gap: 0.45rem;
+  }
+  .quiz-btn-title {
+    font-size: 0.9rem;
+  }
+  .quiz-btn-pulse-tag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+  }
+}
+
 /* Poster Preview Card in Hero */
 .hero-visual {
   display: flex;

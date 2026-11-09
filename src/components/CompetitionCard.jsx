@@ -13,8 +13,8 @@ import {
   Phone,
   MessageCircle,
   Users,
-  Sparkles,
-  BookOpen
+  BookOpen,
+  ArrowUpRight
 } from 'lucide-react';
 
 function getCompetitionIcon(title = '') {
@@ -68,6 +68,7 @@ export function CompetitionCard({ competition, index = 0 }) {
   const rawRules = (competition.rules || '').trim();
   const coordinators = extractCoordinators(`${rawDescription}\n${rawRules}`);
   const isOpen = competition.registrationStatus?.toLowerCase().includes('open');
+  const isQuiz = competition?.title?.toLowerCase().includes('quiz') || competition?.slug?.includes('quiz');
 
   return (
     <>
@@ -159,6 +160,19 @@ export function CompetitionCard({ competition, index = 0 }) {
               <FileText size={15} />
               <span>View Details & Guidelines</span>
             </button>
+            {isQuiz && (
+              <a 
+                href="/quiz-preliminary-result.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="clipboard-quiz-result-btn"
+                title="View Quiz Preliminary Examination Results (Scorecard PDF)"
+              >
+                <Trophy size={14} />
+                <span>Preliminary Result (PDF)</span>
+                <ArrowUpRight size={13} />
+              </a>
+            )}
           </div>
         </div>
       </article>
@@ -323,7 +337,20 @@ export function CompetitionCard({ competition, index = 0 }) {
             </div>
 
             {/* Modal Footer */}
-            <div className="event-details-footer">
+            <div className="event-details-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+              {isQuiz ? (
+                <a 
+                  href="/quiz-preliminary-result.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="clipboard-quiz-result-btn"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Trophy size={14} />
+                  <span>View Preliminary Result PDF</span>
+                  <ArrowUpRight size={13} />
+                </a>
+              ) : <div />}
               <button 
                 type="button" 
                 className="event-details-close-btn-footer" 
