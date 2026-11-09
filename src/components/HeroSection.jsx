@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, MapPin, ArrowRight, ArrowUpRight, Sparkles, ZoomIn, Clock, Trophy, FileText } from 'lucide-react';
+import { Calendar, MapPin, ArrowRight, ArrowUpRight, Sparkles, ZoomIn, Clock, Trophy } from 'lucide-react';
 import { PosterModal } from './PosterModal';
 
 export function HeroSection({ siteConfig }) {
@@ -96,15 +96,14 @@ export function HeroSection({ siteConfig }) {
                 <span className="quiz-btn-shimmer" aria-hidden="true" />
                 <span className="quiz-btn-pulse-tag">
                   <span className="quiz-btn-pulse-dot" />
-                  <span>OUT NOW</span>
+                  <span className="quiz-btn-pulse-text">OUT NOW</span>
                 </span>
-                <Trophy size={19} className="quiz-btn-trophy" aria-hidden="true" />
+                <Trophy size={18} className="quiz-btn-trophy" aria-hidden="true" />
                 <span className="quiz-btn-title">Quiz Preliminary Result</span>
                 <span className="quiz-btn-pdf-chip">
-                  <FileText size={13} />
                   <span>PDF</span>
+                  <ArrowUpRight size={13} className="quiz-btn-chip-arrow" />
                 </span>
-                <ArrowUpRight size={17} className="quiz-btn-arrow" aria-hidden="true" />
               </a>
 
               <button 
